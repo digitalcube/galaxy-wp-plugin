@@ -1,0 +1,127 @@
+.galaxy-heading {
+  padding: 0;
+  margin: 0;
+  line-height: 125%;
+}
+
+.font-weight-strong {
+  font-weight: bold;
+}
+
+.font-size-1 {
+  font-size: var(--font-size-1);
+}
+
+.font-size-2 {
+  font-size: var(--font-size-2);
+}
+
+.font-size-2 {
+  font-size: var(--font-size-2);
+}
+
+.font-size-3 {
+  font-size: var(--font-size-3);
+}
+
+.font-size-4 {
+  font-size: var(--font-size-4);
+}
+
+.font-size-5 {
+  font-size: var(--font-size-5);
+}
+
+.font-size-6 {
+  font-size: var(--font-size-6);
+  line-height: 150%;
+}
+
+.font-size-7 {
+  font-size: var(--font-size-7);
+}
+
+.font-size-8 {
+  font-size: var(--font-size-8);
+}
+
+.font-size-9 {
+  font-size: var(--font-size-9);
+}
+
+.text-shifter-purple-100 {
+  color: var(--shifter-purple-100);
+}
+
+.text-shifter-purple-200 {
+  color: var(--shifter-purple-200);
+}
+
+.text-shifter-purple-300 {
+  color: var(--shifter-purple-300);
+}
+
+.text-shifter-purple-400 {
+  color: var(--shifter-purple-400);
+}
+
+.text-shifter-purple-500 {
+  color: var(--shifter-purple-500);
+}
+
+.text-shifter-purple-600 {
+  color: var(--shifter-purple-600);
+}
+
+.text-shifter-purple-700 {
+  color: var(--shifter-purple-700);
+}
+
+.text-shifter-purple-800 {
+  color: var(--shifter-purple-800);
+}
+
+.text-shifter-purple-900 {
+  color: var(--shifter-purple-900);
+}
+
+.text-shifter-purple-primary {
+  color: var(--shifter-purple-primary);
+}
+
+.text-shifter-brand-gradient {
+  background-image: linear-gradient(
+    45deg,
+    #f80a5b 0%,
+    #892885 35%,
+    #b28cb4 66%,
+    #b28cb4 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 5s linear infinite;
+  background-size: 200%;
+}
+
+@-webkit-keyframes glow {
+  0% {
+    background-position: 0% 43%;
+  }
+  50% {
+    background-position: 100% 58%;
+  }
+  100% {
+    background-position: 0% 43%;
+  }
+}
+@keyframes glow {
+  0% {
+    background-position: 0% 43%;
+  }
+  50% {
+    background-position: 100% 58%;
+  }
+  100% {
+    background-position: 0% 43%;
+  }
+}
