@@ -1,3 +1,7 @@
+p {
+  margin-bottom: 2.25rem;
+}
+
 .galaxy-heading {
   padding: 0;
   margin: 0;
@@ -47,6 +51,42 @@
 
 .font-size-9 {
   font-size: var(--font-size-9);
+}
+
+.text-shifter-gray-100 {
+  color: var(--shifter-gray-100);
+}
+
+.text-shifter-gray-200 {
+  color: var(--shifter-gray-200);
+}
+
+.text-shifter-gray-300 {
+  color: var(--shifter-gray-300);
+}
+
+.text-shifter-gray-400 {
+  color: var(--shifter-gray-400);
+}
+
+.text-shifter-gray-500 {
+  color: var(--shifter-gray-500);
+}
+
+.text-shifter-gray-600 {
+  color: var(--shifter-gray-600);
+}
+
+.text-shifter-gray-700 {
+  color: var(--shifter-gray-700);
+}
+
+.text-shifter-gray-800 {
+  color: var(--shifter-gray-800);
+}
+
+.text-shifter-gray-900 {
+  color: var(--shifter-gray-900);
 }
 
 .text-shifter-purple-100 {

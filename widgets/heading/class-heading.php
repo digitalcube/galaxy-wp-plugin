@@ -175,6 +175,15 @@ class GalaxyHeading extends Widget_Base
 					'shifter-purple-700' => __('Shifter/Purple/700', 'galaxy'),
 					'shifter-purple-800' => __('Shifter/Purple/800', 'galaxy'),
 					'shifter-purple-900' => __('Shifter/Purple/900', 'galaxy'),
+					'shifter-gray-100' => __('Shifter/Gray/100', 'galaxy'),
+					'shifter-gray-200' => __('Shifter/Gray/200', 'galaxy'),
+					'shifter-gray-300' => __('Shifter/Gray/300', 'galaxy'),
+					'shifter-gray-400' => __('Shifter/Gray/400', 'galaxy'),
+					'shifter-gray-500' => __('Shifter/Gray/500', 'galaxy'),
+					'shifter-gray-600' => __('Shifter/Gray/600', 'galaxy'),
+					'shifter-gray-700' => __('Shifter/Gray/700', 'galaxy'),
+					'shifter-gray-800' => __('Shifter/Gray/800', 'galaxy'),
+					'shifter-gray-900' => __('Shifter/Gray/900', 'galaxy'),
 				],
 			]
 		);
