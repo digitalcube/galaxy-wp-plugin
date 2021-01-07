@@ -271,7 +271,7 @@ class GalaxyHeading extends Widget_Base
 		);
 ?>
 		<?php echo $link ? '<a ' . $this->get_render_attribute_string('link') . '>' : null ?>
-		<<?php echo $settings['header_size']; ?> <?php echo $this->get_render_attribute_string('class'); ?>><?php echo wp_kses($settings['title'], array()); ?></<?php echo $settings['header_size']; ?>>
+		<<?php echo $settings['header_size']; ?> <?php echo $this->get_render_attribute_string('class'); ?>><?php echo $settings['title']; ?></<?php echo $settings['header_size']; ?>>
 		<?php echo $link ? '</a>' : null ?>
 	<?php
 	}
