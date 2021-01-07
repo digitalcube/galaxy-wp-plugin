@@ -1,3 +1,19 @@
+.sans-serif {
+  font-family: var(--font-family-sans-serif);
+}
+
+.serif {
+  font-family: var(--font-family-serif);
+}
+
+.system-sans-serif {
+  font-family: var(--font-family-system-sans-serif);
+}
+
+.system-serif {
+  font-family: var(--font-family-system-serif);
+}
+
 p {
   margin-bottom: 2.25rem;
 }
@@ -10,6 +26,10 @@ p {
 
 .font-weight-strong {
   font-weight: bold;
+}
+
+.font-weight-regular {
+  font-weight: normal;
 }
 
 .font-size-1 {
