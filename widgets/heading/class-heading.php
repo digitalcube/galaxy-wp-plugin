@@ -68,7 +68,7 @@ class GalaxyHeading extends Widget_Base
 	 */
 	public function get_title()
 	{
-		return __('Heading', 'galaxy-heading-heading');
+		return __('Heading', 'galaxy-heading');
 	}
 
 	/**
