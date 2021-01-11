@@ -70,7 +70,6 @@ class Widgets
 	{
 		require_once 'widgets/heading/class-heading.php';
 		require_once 'widgets/spacer/class-spacer.php';
-		require_once 'widgets/algolia/class-algolia.php';
 	}
 
 	/**
@@ -89,7 +88,6 @@ class Widgets
 		// Register the plugin widget classes.
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\GalaxyHeading());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\GalaxySpacer());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\GalaxyAlgolia());
 	}
 
 	/**
