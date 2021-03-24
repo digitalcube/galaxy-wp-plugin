@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Admin_Page_Settings class file.
+ * Galaxy_Admin_Page_Settings class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Admin_Page_Settings
+ * Class Galaxy_Admin_Page_Settings
  *
  * @since 1.0.0
  */
-class Algolia_Admin_Page_Settings {
+class Galaxy_Admin_Page_Settings {
 
 	/**
 	 * Admin page slug.
@@ -56,24 +56,24 @@ class Algolia_Admin_Page_Settings {
 	private $option_group = 'algolia_settings';
 
 	/**
-	 * The Algolia_Plugin instance.
+	 * The Galaxy_Plugin instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_Admin_Page_Settings constructor.
+	 * Galaxy_Admin_Page_Settings constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Plugin $plugin The Algolia_Plugin instance.
+	 * @param Galaxy_Plugin $plugin The Galaxy_Plugin instance.
 	 */
-	public function __construct( Algolia_Plugin $plugin ) {
+	public function __construct( Galaxy_Plugin $plugin ) {
 		$this->plugin = $plugin;
 
 		add_action( 'admin_menu', array( $this, 'add_page' ) );
@@ -388,7 +388,7 @@ class Algolia_Admin_Page_Settings {
 			);
 			$settings->set_api_is_reachable( false );
 		} else {
-			if ( ! Algolia_API::is_valid_search_api_key( $settings->get_application_id(), $settings->get_search_api_key() ) ) {
+			if ( ! Galaxy_API::is_valid_search_api_key( $settings->get_application_id(), $settings->get_search_api_key() ) ) {
 				add_settings_error(
 					$this->option_group,
 					'wrong_search_API_key',

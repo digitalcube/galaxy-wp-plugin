@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Admin_Page_Autocomplete class file.
+ * Galaxy_Admin_Page_Autocomplete class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Admin_Page_Autocomplete
+ * Class Galaxy_Admin_Page_Autocomplete
  *
  * @since 1.0.0
  */
-class Algolia_Admin_Page_Autocomplete {
+class Galaxy_Admin_Page_Autocomplete {
 
 	/**
 	 * Admin page slug.
@@ -56,34 +56,34 @@ class Algolia_Admin_Page_Autocomplete {
 	private $option_group = 'algolia_autocomplete';
 
 	/**
-	 * The Algolia_Settings object.
+	 * The Galaxy_Settings object.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Settings
+	 * @var Galaxy_Settings
 	 */
 	private $settings;
 
 	/**
-	 * The Algolia_Autocomplete_Config object.
+	 * The Galaxy_Autocomplete_Config object.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var Algolia_Autocomplete_Config
+	 * @var Galaxy_Autocomplete_Config
 	 */
 	private $autocomplete_config;
 
 	/**
-	 * Algolia_Admin_Page_Autocomplete constructor.
+	 * Galaxy_Admin_Page_Autocomplete constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Settings            $settings            The Algolia_Settings object.
-	 * @param Algolia_Autocomplete_Config $autocomplete_config The Algolia_Autocomplete_Config object.
+	 * @param Galaxy_Settings            $settings            The Galaxy_Settings object.
+	 * @param Galaxy_Autocomplete_Config $autocomplete_config The Galaxy_Autocomplete_Config object.
 	 */
-	public function __construct( Algolia_Settings $settings, Algolia_Autocomplete_Config $autocomplete_config ) {
+	public function __construct( Galaxy_Settings $settings, Galaxy_Autocomplete_Config $autocomplete_config ) {
 		$this->settings            = $settings;
 		$this->autocomplete_config = $autocomplete_config;
 

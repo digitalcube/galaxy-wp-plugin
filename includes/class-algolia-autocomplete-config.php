@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Autocomplete_Config class file.
+ * Galaxy_Autocomplete_Config class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,31 +9,31 @@
  */
 
 /**
- * Class Algolia_Autocomplete_Config
+ * Class Galaxy_Autocomplete_Config
  *
  * @since 1.0.0
  */
-class Algolia_Autocomplete_Config {
+class Galaxy_Autocomplete_Config {
 
 	/**
-	 * The Algolia_Plugin instance.
+	 * The Galaxy_Plugin instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_Autocomplete_Config constructor.
+	 * Galaxy_Autocomplete_Config constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Plugin $plugin The Algolia_Plugin instance.
+	 * @param Galaxy_Plugin $plugin The Galaxy_Plugin instance.
 	 */
-	public function __construct( Algolia_Plugin $plugin ) {
+	public function __construct( Galaxy_Plugin $plugin ) {
 		$this->plugin = $plugin;
 	}
 
@@ -57,7 +57,7 @@ class Algolia_Autocomplete_Config {
 		 * @author WebDevStudios <contact@webdevstudios.com>
 		 * @since  1.0.0
 		 *
-		 * @var Algolia_Index $index
+		 * @var Galaxy_Index $index
 		 */
 		foreach ( $indices as $index ) {
 			$index_config = $this->extract_index_config( $existing_config, $index->get_id() );

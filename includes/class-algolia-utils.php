@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Utils class file.
+ * Galaxy_Utils class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Utils
+ * Class Galaxy_Utils
  *
  * @since 1.0.0
  */
-class Algolia_Utils {
+class Galaxy_Utils {
 
 	/**
 	 * Retrieve term parents with separator.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Compatibility class file.
+ * Galaxy_Compatibility class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Compatibility
+ * Class Galaxy_Compatibility
  *
  * @since 1.0.0
  */
-class Algolia_Compatibility {
+class Galaxy_Compatibility {
 
 	/**
 	 * The "current language" from WPML, if available, else null.
@@ -26,7 +26,7 @@ class Algolia_Compatibility {
 	private $current_language;
 
 	/**
-	 * Algolia_Compatibility constructor.
+	 * Galaxy_Compatibility constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0

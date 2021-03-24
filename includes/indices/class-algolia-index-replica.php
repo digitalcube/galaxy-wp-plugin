@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Index_Replica class file.
+ * Galaxy_Index_Replica class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Index_Replica
+ * Class Galaxy_Index_Replica
  *
  * @since 1.0.0
  */
-class Algolia_Index_Replica {
+class Galaxy_Index_Replica {
 
 	const ORDER_ASC  = 'asc';
 	const ORDER_DESC = 'desc';
@@ -39,7 +39,7 @@ class Algolia_Index_Replica {
 	private $order;
 
 	/**
-	 * Algolia_Index_Replica constructor.
+	 * Galaxy_Index_Replica constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
@@ -65,11 +65,11 @@ class Algolia_Index_Replica {
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Index $index The Algolia_Index instance.
+	 * @param Galaxy_Index $index The Galaxy_Index instance.
 	 *
 	 * @return string
 	 */
-	public function get_replica_index_name( Algolia_Index $index ) {
+	public function get_replica_index_name( Galaxy_Index $index ) {
 		return (string) $index->get_name() . '_' . $this->attribute_name . '_' . $this->order;
 	}
 

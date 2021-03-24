@@ -9,7 +9,6 @@
  * @package DigitalCube\Galaxy
  */
 
-require_once ALGOLIA_PATH . 'includes/factories/class-plugin-factory.php';
-require_once ALGOLIA_PATH . 'includes/algolia/algolia.php';
-require_once ALGOLIA_PATH . 'includes/elementor/class-algolia-index.php';
-require_once ALGOLIA_PATH . 'includes/blocks/index.php';
+require_once 'includes/algolia/algolia.php';
+require_once 'includes/elementor/class-algolia-index.php';
+require_once 'includes/blocks/index.php';

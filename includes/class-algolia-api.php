@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_API class file.
+ * Galaxy_API class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -12,11 +12,11 @@ use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
 use Algolia\AlgoliaSearch\SearchClient;
 
 /**
- * Class Algolia_API
+ * Class Galaxy_API
  *
  * @since 1.0.0
  */
-class Algolia_API {
+class Galaxy_API {
 
 	/**
 	 * The SearchClient instance.
@@ -29,24 +29,24 @@ class Algolia_API {
 	private $client;
 
 	/**
-	 * The Algolia_Settings instance.
+	 * The Galaxy_Settings instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Settings
+	 * @var Galaxy_Settings
 	 */
 	private $settings;
 
 	/**
-	 * Algolia_API constructor.
+	 * Galaxy_API constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Settings $settings The Algolia_Settings instance.
+	 * @param Galaxy_Settings $settings The Galaxy_Settings instance.
 	 */
-	public function __construct( Algolia_Settings $settings ) {
+	public function __construct( Galaxy_Settings $settings ) {
 		$this->settings = $settings;
 	}
 
@@ -95,7 +95,7 @@ class Algolia_API {
 		}
 
 		if ( null === $this->client ) {
-			$this->client = Algolia_Search_Client_Factory::create(
+			$this->client = Galaxy_Search_Client_Factory::create(
 				(string) $this->settings->get_application_id(),
 				(string) $this->settings->get_api_key()
 			);
@@ -119,7 +119,7 @@ class Algolia_API {
 	 */
 	public static function assert_valid_credentials( $application_id, $api_key ) {
 
-		$client = Algolia_Search_Client_Factory::create(
+		$client = Galaxy_Search_Client_Factory::create(
 			(string) $application_id,
 			(string) $api_key
 		);
@@ -194,7 +194,7 @@ class Algolia_API {
 	 */
 	public static function is_valid_search_api_key( $application_id, $search_api_key ) {
 
-		$client = Algolia_Search_Client_Factory::create(
+		$client = Galaxy_Search_Client_Factory::create(
 			(string) $application_id,
 			(string) $search_api_key
 		);

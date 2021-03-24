@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_CLI class file.
+ * Galaxy_CLI class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,32 +9,32 @@
  */
 
 /**
- * Class Algolia_CLI
+ * Class Galaxy_CLI
  *
  * Push and re-index records into Algolia indices.
  *
  * @since 1.0.0
  */
-class Algolia_CLI extends \WP_CLI_Command {
+class Galaxy_CLI extends \WP_CLI_Command {
 
 	/**
-	 * The Algolia_Plugin instance.
+	 * The Galaxy_Plugin instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_CLI constructor.
+	 * Galaxy_CLI constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 */
 	public function __construct() {
-		$this->plugin = Algolia_Plugin_Factory::create();
+		$this->plugin = Galaxy_Plugin_Factory::create();
 	}
 
 	/**
@@ -105,12 +105,12 @@ class Algolia_CLI extends \WP_CLI_Command {
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Index $index Algolia_Index instance.
+	 * @param Galaxy_Index $index Galaxy_Index instance.
 	 * @param bool          $clear Clear all existing records prior to pushing the records.
 	 *
 	 * @return void
 	 */
-	private function do_reindex( Algolia_Index $index, $clear ) {
+	private function do_reindex( Galaxy_Index $index, $clear ) {
 
 		if ( $clear ) {
 			/* translators: the placeholder will contain the name of the index. */

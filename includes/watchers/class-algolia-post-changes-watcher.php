@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Post_Changes_Watcher class file.
+ * Galaxy_Post_Changes_Watcher class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -11,19 +11,19 @@
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
 
 /**
- * Class Algolia_Post_Changes_Watcher
+ * Class Galaxy_Post_Changes_Watcher
  *
  * @since 1.0.0
  */
-class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
+class Galaxy_Post_Changes_Watcher implements Galaxy_Changes_Watcher {
 
 	/**
-	 * Algolia_Index instance.
+	 * Galaxy_Index instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Index
+	 * @var Galaxy_Index
 	 */
 	private $index;
 
@@ -38,14 +38,14 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	private $posts_deleted = array();
 
 	/**
-	 * Algolia_Post_Changes_Watcher constructor.
+	 * Galaxy_Post_Changes_Watcher constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Index $index Algolia_Index instance.
+	 * @param Galaxy_Index $index Galaxy_Index instance.
 	 */
-	public function __construct( Algolia_Index $index ) {
+	public function __construct( Galaxy_Index $index ) {
 		$this->index = $index;
 	}
 

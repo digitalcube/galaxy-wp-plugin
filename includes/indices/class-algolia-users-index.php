@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Users_Index class file.
+ * Galaxy_Users_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Users_Index
+ * Class Galaxy_Users_Index
  *
  * @since 1.0.0
  */
-final class Algolia_Users_Index extends Algolia_Index {
+final class Galaxy_Users_Index extends Galaxy_Index {
 
 	/**
 	 * What this index contains.

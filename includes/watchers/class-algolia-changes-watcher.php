@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Changes_Watcher interface file.
+ * Galaxy_Changes_Watcher interface file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Interface Algolia_Changes_Watcher
+ * Interface Galaxy_Changes_Watcher
  *
  * @since 1.0.0
  */
-interface Algolia_Changes_Watcher {
+interface Galaxy_Changes_Watcher {
 
 	/**
 	 * Watch WordPress events.

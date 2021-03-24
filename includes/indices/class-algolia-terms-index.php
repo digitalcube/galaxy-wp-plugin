@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Terms_Index class file.
+ * Galaxy_Terms_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Terms_Index
+ * Class Galaxy_Terms_Index
  *
  * @since 1.0.0
  */
-final class Algolia_Terms_Index extends Algolia_Index {
+final class Galaxy_Terms_Index extends Galaxy_Index {
 
 	/**
 	 * What this index contains.
@@ -36,7 +36,7 @@ final class Algolia_Terms_Index extends Algolia_Index {
 	private $taxonomy;
 
 	/**
-	 * Algolia_Terms_Index constructor.
+	 * Galaxy_Terms_Index constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0

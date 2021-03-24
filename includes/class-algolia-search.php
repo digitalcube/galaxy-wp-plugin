@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Search class file.
+ * Galaxy_Search class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -11,11 +11,11 @@
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
 
 /**
- * Class Algolia_Search
+ * Class Galaxy_Search
  *
  * @since 1.0.0
  */
-class Algolia_Search {
+class Galaxy_Search {
 
 	/**
 	 * Current page hits.
@@ -38,24 +38,24 @@ class Algolia_Search {
 	private $total_hits;
 
 	/**
-	 * Instance of Algolia_Index.
+	 * Instance of Galaxy_Index.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Index
+	 * @var Galaxy_Index
 	 */
 	private $index;
 
 	/**
-	 * Algolia_Search constructor.
+	 * Galaxy_Search constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Index $index Instance of Algolia_Index.
+	 * @param Galaxy_Index $index Instance of Galaxy_Index.
 	 */
-	public function __construct( Algolia_Index $index ) {
+	public function __construct( Galaxy_Index $index ) {
 		$this->index = $index;
 
 		add_action( 'loop_start', [ $this, 'begin_highlighting' ] );

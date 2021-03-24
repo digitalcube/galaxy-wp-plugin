@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Admin_Page_Native_Search class file.
+ * Galaxy_Admin_Page_Native_Search class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Admin_Page_Native_Search
+ * Class Galaxy_Admin_Page_Native_Search
  *
  * @since 1.0.0
  */
-class Algolia_Admin_Page_Native_Search {
+class Galaxy_Admin_Page_Native_Search {
 
 	/**
 	 * Admin page slug.
@@ -56,24 +56,24 @@ class Algolia_Admin_Page_Native_Search {
 	private $option_group = 'algolia_native_search';
 
 	/**
-	 * The Algolia_Plugin instance.
+	 * The Galaxy_Plugin instance.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_Admin_Page_Native_Search constructor.
+	 * Galaxy_Admin_Page_Native_Search constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Plugin $plugin The Algolia_Plugin instance.
+	 * @param Galaxy_Plugin $plugin The Galaxy_Plugin instance.
 	 */
-	public function __construct( Algolia_Plugin $plugin ) {
+	public function __construct( Galaxy_Plugin $plugin ) {
 		$this->plugin = $plugin;
 
 		add_action( 'admin_menu', array( $this, 'add_page' ) );

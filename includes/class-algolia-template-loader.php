@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Template_Loader class file.
+ * Galaxy_Template_Loader class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,33 +9,33 @@
  */
 
 /**
- * Class Algolia_Template_Loader
+ * Class Galaxy_Template_Loader
  *
  * @since 1.0.0
  */
-class Algolia_Template_Loader {
+class Galaxy_Template_Loader {
 
 	/**
 	 * The Algolia Plugin.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_Template_Loader constructor.
+	 * Galaxy_Template_Loader constructor.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
 	 * @since   0.0.0
 	 *
-	 * @param Algolia_Plugin $plugin The Algolia Plugin.
+	 * @param Galaxy_Plugin $plugin The Algolia Plugin.
 	 */
-	public function __construct( Algolia_Plugin $plugin ) {
+	public function __construct( Galaxy_Plugin $plugin ) {
 		$this->plugin = $plugin;
 
-		$in_footer = Algolia_Utils::get_scripts_in_footer_argument();
+		$in_footer = Galaxy_Utils::get_scripts_in_footer_argument();
 
 		// Inject Algolia configuration in a JavaScript variable.
 		if ( true === $in_footer ) {

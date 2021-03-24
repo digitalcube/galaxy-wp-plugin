@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Styles class file.
+ * Galaxy_Styles class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,14 +9,14 @@
  */
 
 /**
- * Class Algolia_Styles
+ * Class Galaxy_Styles
  *
  * @since 1.5.0
  */
-class Algolia_Styles {
+class Galaxy_Styles {
 
 	/**
-	 * Algolia_Styles constructor.
+	 * Galaxy_Styles constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0

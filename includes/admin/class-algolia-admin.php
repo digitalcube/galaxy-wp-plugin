@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Admin class file.
+ * Galaxy_Admin class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,30 +9,30 @@
  */
 
 /**
- * Class Algolia_Admin
+ * Class Galaxy_Admin
  *
  * @since 1.0.0
  */
-class Algolia_Admin {
+class Galaxy_Admin {
 
 	/**
 	 * The Algolia Plugin.
 	 *
 	 * @since   0.0.0
 	 *
-	 * @var Algolia_Plugin
+	 * @var Galaxy_Plugin
 	 */
 	private $plugin;
 
 	/**
-	 * Algolia_Admin constructor.
+	 * Galaxy_Admin constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @param Algolia_Plugin $plugin The Algolia Plugin.
+	 * @param Galaxy_Plugin $plugin The Algolia Plugin.
 	 */
-	public function __construct( Algolia_Plugin $plugin ) {
+	public function __construct( Galaxy_Plugin $plugin ) {
 		$this->plugin = $plugin;
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -40,8 +40,8 @@ class Algolia_Admin {
 
 		$api = $plugin->get_api();
 		if ( $api->is_reachable() ) {
-			new Algolia_Admin_Page_Autocomplete( $plugin->get_settings(), $this->plugin->get_autocomplete_config() );
-			new Algolia_Admin_Page_Native_Search( $plugin );
+			new Galaxy_Admin_Page_Autocomplete( $plugin->get_settings(), $this->plugin->get_autocomplete_config() );
+			new Galaxy_Admin_Page_Native_Search( $plugin );
 
 			add_action( 'wp_ajax_algolia_re_index', array( $this, 're_index' ) );
 			add_action( 'wp_ajax_algolia_push_settings', array( $this, 'push_settings' ) );
@@ -52,7 +52,7 @@ class Algolia_Admin {
 			}
 		}
 
-		new Algolia_Admin_Page_Settings( $plugin );
+		new Galaxy_Admin_Page_Settings( $plugin );
 
 		add_action( 'admin_notices', array( $this, 'display_unmet_requirements_notices' ) );
 	}

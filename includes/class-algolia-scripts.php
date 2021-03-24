@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Algolia_Scripts class file.
+ * Galaxy_Scripts class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -10,15 +10,15 @@
  */
 
 /**
- * Class Algolia_Scripts
+ * Class Galaxy_Scripts
  *
  * @since 1.5.0
  */
-class Algolia_Scripts
+class Galaxy_Scripts
 {
 
 	/**
-	 * Algolia_Scripts constructor.
+	 * Galaxy_Scripts constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0
@@ -37,7 +37,7 @@ class Algolia_Scripts
 	public function register_scripts()
 	{
 
-		$in_footer = Algolia_Utils::get_scripts_in_footer_argument();
+		$in_footer = Galaxy_Utils::get_scripts_in_footer_argument();
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 

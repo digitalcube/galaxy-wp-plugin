@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Plugin class file.
+ * Galaxy_Plugin class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,41 +9,41 @@
  */
 
 /**
- * Class Algolia_Plugin
+ * Class Galaxy_Plugin
  *
  * @since 1.0.0
  */
-class Algolia_Plugin {
+class Galaxy_Plugin {
 
 	const NAME = 'algolia';
 
 	/**
-	 * Instance of Algolia_API.
+	 * Instance of Galaxy_API.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_API
+	 * @var Galaxy_API
 	 */
 	protected $api;
 
 	/**
-	 * Instance of Algolia_Settings.
+	 * Instance of Galaxy_Settings.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Settings
+	 * @var Galaxy_Settings
 	 */
 	private $settings;
 
 	/**
-	 * Instance of Algolia_Autocomplete_Config.
+	 * Instance of Galaxy_Autocomplete_Config.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Autocomplete_Config
+	 * @var Galaxy_Autocomplete_Config
 	 */
 	private $autocomplete_config;
 
@@ -68,72 +68,72 @@ class Algolia_Plugin {
 	private $changes_watchers;
 
 	/**
-	 * Instance of Algolia_Styles.
+	 * Instance of Galaxy_Styles.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0
 	 *
-	 * @var Algolia_Styles
+	 * @var Galaxy_Styles
 	 */
 	private $styles;
 
 	/**
-	 * Instance of Algolia_Scripts.
+	 * Instance of Galaxy_Scripts.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0
 	 *
-	 * @var Algolia_Scripts
+	 * @var Galaxy_Scripts
 	 */
 	private $scripts;
 
 	/**
-	 * Instance of Algolia_Template_Loader.
+	 * Instance of Galaxy_Template_Loader.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Template_Loader
+	 * @var Galaxy_Template_Loader
 	 */
 	private $template_loader;
 
 	/**
-	 * Instance of Algolia_Compatibility.
+	 * Instance of Galaxy_Compatibility.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @var Algolia_Compatibility
+	 * @var Galaxy_Compatibility
 	 */
 	private $compatibility;
 
 	/**
-	 * Get the singleton instance of Algolia_Plugin.
+	 * Get the singleton instance of Galaxy_Plugin.
 	 *
 	 * @author     WebDevStudios <contact@webdevstudios.com>
 	 * @since      1.0.0
-	 * @deprecated 1.6.0 Use Algolia_Plugin_Factory::create()
-	 * @see        Algolia_Plugin_Factory::create()
+	 * @deprecated 1.6.0 Use Galaxy_Plugin_Factory::create()
+	 * @see        Galaxy_Plugin_Factory::create()
 	 *
-	 * @return Algolia_Plugin
+	 * @return Galaxy_Plugin
 	 */
 	public static function get_instance() {
 		_deprecated_function( __METHOD__, '1.6.0', 'Algolia_Plugin_Factory::create();' );
-		return Algolia_Plugin_Factory::create();
+		return Galaxy_Plugin_Factory::create();
 	}
 
 	/**
-	 * Algolia_Plugin constructor.
+	 * Galaxy_Plugin constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 */
 	public function __construct() {
-		$this->settings      = new Algolia_Settings();
-		$this->api           = new Algolia_API( $this->settings );
-		$this->compatibility = new Algolia_Compatibility();
-		$this->styles        = new Algolia_Styles();
-		$this->scripts       = new Algolia_Scripts();
+		$this->settings      = new Galaxy_Settings();
+		$this->api           = new Galaxy_API( $this->settings );
+		$this->compatibility = new Galaxy_Compatibility();
+		$this->styles        = new Galaxy_Styles();
+		$this->scripts       = new Galaxy_Scripts();
 		add_action( 'init', array( $this, 'load' ), 20 );
 	}
 
@@ -147,13 +147,13 @@ class Algolia_Plugin {
 		if ( $this->api->is_reachable() ) {
 			$this->load_indices();
 			$this->override_wordpress_search();
-			$this->autocomplete_config = new Algolia_Autocomplete_Config( $this );
-			$this->template_loader     = new Algolia_Template_Loader( $this );
+			$this->autocomplete_config = new Galaxy_Autocomplete_Config( $this );
+			$this->template_loader     = new Galaxy_Template_Loader( $this );
 		}
 
 		// Load admin or public part of the plugin.
 		if ( is_admin() ) {
-			new Algolia_Admin( $this );
+			new Galaxy_Admin( $this );
 		}
 	}
 
@@ -190,19 +190,19 @@ class Algolia_Plugin {
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @return Algolia_API
+	 * @return Galaxy_API
 	 */
 	public function get_api() {
 		return $this->api;
 	}
 
 	/**
-	 * Get the Algolia_Settings.
+	 * Get the Galaxy_Settings.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @return Algolia_Settings
+	 * @return Galaxy_Settings
 	 */
 	public function get_settings() {
 		return $this->settings;
@@ -231,16 +231,16 @@ class Algolia_Plugin {
 			return;
 		}
 
-		new Algolia_Search( $index );
+		new Galaxy_Search( $index );
 	}
 
 	/**
-	 * Get the Algolia_Autocomplete_Config.
+	 * Get the Galaxy_Autocomplete_Config.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @return Algolia_Autocomplete_Config
+	 * @return Galaxy_Autocomplete_Config
 	 */
 	public function get_autocomplete_config() {
 		return $this->autocomplete_config;
@@ -265,7 +265,7 @@ class Algolia_Plugin {
 			), 'names'
 		);
 		$searchable_post_types = (array) apply_filters( 'algolia_searchable_post_types', $searchable_post_types );
-		$this->indices[]       = new Algolia_Searchable_Posts_Index( $searchable_post_types );
+		$this->indices[]       = new Galaxy_Searchable_Posts_Index( $searchable_post_types );
 
 		// Add one posts index per post type.
 		$post_types = get_post_types();
@@ -277,7 +277,7 @@ class Algolia_Plugin {
 				continue;
 			}
 
-			$this->indices[] = new Algolia_Posts_Index( $post_type );
+			$this->indices[] = new Galaxy_Posts_Index( $post_type );
 		}
 
 		// Add one terms index per taxonomy.
@@ -289,11 +289,11 @@ class Algolia_Plugin {
 				continue;
 			}
 
-			$this->indices[] = new Algolia_Terms_Index( $taxonomy );
+			$this->indices[] = new Galaxy_Terms_Index( $taxonomy );
 		}
 
 		// Add the users index.
-		$this->indices[] = new Algolia_Users_Index();
+		$this->indices[] = new Galaxy_Users_Index();
 
 		// Allow developers to filter the indices.
 		$this->indices = (array) apply_filters( 'algolia_indices', $this->indices );
@@ -306,11 +306,11 @@ class Algolia_Plugin {
 				$index->set_enabled( true );
 
 				if ( $index->contains_only( 'posts' ) ) {
-					$this->changes_watchers[] = new Algolia_Post_Changes_Watcher( $index );
+					$this->changes_watchers[] = new Galaxy_Post_Changes_Watcher( $index );
 				} elseif ( $index->contains_only( 'terms' ) ) {
-					$this->changes_watchers[] = new Algolia_Term_Changes_Watcher( $index );
+					$this->changes_watchers[] = new Galaxy_Term_Changes_Watcher( $index );
 				} elseif ( $index->contains_only( 'users' ) ) {
-					$this->changes_watchers[] = new Algolia_User_Changes_Watcher( $index );
+					$this->changes_watchers[] = new Galaxy_User_Changes_Watcher( $index );
 				}
 			}
 		}
@@ -367,7 +367,7 @@ class Algolia_Plugin {
 	 *
 	 * @param string $index_id The ID of the index to get.
 	 *
-	 * @return Algolia_Index|null
+	 * @return Galaxy_Index|null
 	 */
 	public function get_index( $index_id ) {
 		foreach ( $this->indices as $index ) {
@@ -404,36 +404,36 @@ class Algolia_Plugin {
 	}
 
 	/**
-	 * Get the Algolia_Template_Loader.
+	 * Get the Galaxy_Template_Loader.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
 	 *
-	 * @return Algolia_Template_Loader
+	 * @return Galaxy_Template_Loader
 	 */
 	public function get_template_loader() {
 		return $this->template_loader;
 	}
 
 	/**
-	 * Get the Algolia_Styles.
+	 * Get the Galaxy_Styles.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0
 	 *
-	 * @return Algolia_Styles
+	 * @return Galaxy_Styles
 	 */
 	public function get_styles() {
 		return $this->styles;
 	}
 
 	/**
-	 * Get the Algolia_Scripts.
+	 * Get the Galaxy_Scripts.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.5.0
 	 *
-	 * @return Algolia_Scripts
+	 * @return Galaxy_Scripts
 	 */
 	public function get_scripts() {
 		return $this->scripts;

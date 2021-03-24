@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Searchable_Posts_Index class file.
+ * Galaxy_Searchable_Posts_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,11 +9,11 @@
  */
 
 /**
- * Class Algolia_Searchable_Posts_Index
+ * Class Galaxy_Searchable_Posts_Index
  *
  * @since 1.0.0
  */
-final class Algolia_Searchable_Posts_Index extends Algolia_Index {
+final class Galaxy_Searchable_Posts_Index extends Galaxy_Index {
 
 	/**
 	 * What this index contains.
@@ -36,7 +36,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	private $post_types;
 
 	/**
-	 * Algolia_Searchable_Posts_Index constructor.
+	 * Galaxy_Searchable_Posts_Index constructor.
 	 *
 	 * @author WebDevStudios <contact@webdevstudios.com>
 	 * @since  1.0.0
@@ -149,8 +149,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 			add_filter( 'the_content', 'wptexturize', 10 );
 		}
 
-		$post_content = Algolia_Utils::prepare_content( $post_content );
-		$parts        = Algolia_Utils::explode_content( $post_content );
+		$post_content = Galaxy_Utils::prepare_content( $post_content );
+		$parts        = Galaxy_Utils::explode_content( $post_content );
 
 		if ( defined( 'ALGOLIA_SPLIT_POSTS' ) && false === ALGOLIA_SPLIT_POSTS ) {
 			$parts = array( array_shift( $parts ) );
@@ -211,7 +211,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 			);
 		}
 
-		$shared_attributes['images'] = Algolia_Utils::get_post_images( $post->ID );
+		$shared_attributes['images'] = Galaxy_Utils::get_post_images( $post->ID );
 
 		$shared_attributes['permalink']      = get_permalink( $post );
 		$shared_attributes['post_mime_type'] = $post->post_mime_type;
@@ -226,7 +226,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 			$terms = is_array( $terms ) ? $terms : array();
 
 			if ( $taxonomy->hierarchical ) {
-				$hierarchical_taxonomy_values = Algolia_Utils::get_taxonomy_tree( $terms, $taxonomy->name );
+				$hierarchical_taxonomy_values = Galaxy_Utils::get_taxonomy_tree( $terms, $taxonomy->name );
 				if ( ! empty( $hierarchical_taxonomy_values ) ) {
 					$shared_attributes['taxonomies_hierarchical'][ $taxonomy->name ] = $hierarchical_taxonomy_values;
 				}
@@ -317,7 +317,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 		 *
 		 * @since 1.3.0
 		 *
-		 * @see Algolia_Posts_Index::get_post_object_id()
+		 * @see Galaxy_Posts_Index::get_post_object_id()
 		 */
 		return apply_filters(
 			'algolia_get_post_object_id',

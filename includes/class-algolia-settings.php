@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Settings class file.
+ * Galaxy_Settings class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -9,14 +9,14 @@
  */
 
 /**
- * Class Algolia_Settings
+ * Class Galaxy_Settings
  *
  * @since 1.0.0
  */
-class Algolia_Settings {
+class Galaxy_Settings {
 
 	/**
-	 * Algolia_Settings constructor.
+	 * Galaxy_Settings constructor.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
 	 * @since   0.0.0
@@ -96,8 +96,8 @@ class Algolia_Settings {
 	 *
 	 * @author     WebDevStudios <contact@webdevstudios.com>
 	 * @since      1.0.0
-	 * @deprecated 1.7.0 Use Algolia_Settings::get_excluded_post_types()
-	 * @see        Algolia_Settings::get_excluded_post_types()
+	 * @deprecated 1.7.0 Use Galaxy_Settings::get_excluded_post_types()
+	 * @see        Galaxy_Settings::get_excluded_post_types()
 	 *
 	 * @return array
 	 */
@@ -198,8 +198,8 @@ class Algolia_Settings {
 	 *
 	 * @author     WebDevStudios <contact@webdevstudios.com>
 	 * @since      1.0.0
-	 * @deprecated 1.7.0 Use Algolia_Settings::get_excluded_taxonomies()
-	 * @see        Algolia_Settings::get_excluded_taxonomies()
+	 * @deprecated 1.7.0 Use Galaxy_Settings::get_excluded_taxonomies()
+	 * @see        Galaxy_Settings::get_excluded_taxonomies()
 	 *
 	 * @return array
 	 */

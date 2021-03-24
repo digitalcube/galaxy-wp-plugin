@@ -1,6 +1,6 @@
 <?php
 /**
- * Algolia_Index class file.
+ * Galaxy_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   0.0.0
@@ -13,11 +13,11 @@ use Algolia\AlgoliaSearch\SearchClient;
 use Algolia\AlgoliaSearch\SearchIndex;
 
 /**
- * Class Algolia_Index
+ * Class Galaxy_Index
  *
  * @since 1.0.0
  */
-abstract class Algolia_Index {
+abstract class Galaxy_Index {
 
 	/**
 	 * The SearchClient instance.
@@ -203,7 +203,7 @@ abstract class Algolia_Index {
 	 * @param string $attribute_name The attribute name.
 	 * @param string $order          The order.
 	 *
-	 * @return Algolia_Index_Replica
+	 * @return Galaxy_Index_Replica
 	 *
 	 * @throws RuntimeException If the replica can't be found.
 	 */
@@ -215,7 +215,7 @@ abstract class Algolia_Index {
 		 * @author WebDevStudios <contact@webdevstudios.com>
 		 * @since  1.0.0
 		 *
-		 * @var Algolia_Index_Replica $replica
+		 * @var Galaxy_Index_Replica $replica
 		 */
 		foreach ( $replicas as $replica ) {
 			if ( $replica->get_attribute_name() === $attribute_name && $replica->get_order() === $order ) {
@@ -692,7 +692,7 @@ abstract class Algolia_Index {
 		$filtered = array();
 		// Filter out invalid inputs.
 		foreach ( $replicas as $replica ) {
-			if ( ! $replica instanceof Algolia_Index_Replica ) {
+			if ( ! $replica instanceof Galaxy_Index_Replica ) {
 				continue;
 			}
 			$filtered[] = $replica;
@@ -722,7 +722,7 @@ abstract class Algolia_Index {
 		 * @author WebDevStudios <contact@webdevstudios.com>
 		 * @since  1.0.0
 		 *
-		 * @var Algolia_Index_Replica $replica
+		 * @var Galaxy_Index_Replica $replica
 		 */
 		foreach ( $replicas as $replica ) {
 			$replica_index_names[] = $replica->get_replica_index_name( $this );
@@ -745,7 +745,7 @@ abstract class Algolia_Index {
 		 * @author WebDevStudios <contact@webdevstudios.com>
 		 * @since  1.0.0
 		 *
-		 * @var Algolia_Index_Replica $replica
+		 * @var Galaxy_Index_Replica $replica
 		 */
 		foreach ( $replicas as $replica ) {
 			$settings['ranking'] = $replica->get_ranking();
