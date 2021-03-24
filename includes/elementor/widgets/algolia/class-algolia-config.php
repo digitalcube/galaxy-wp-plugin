@@ -48,7 +48,7 @@ class AlgoliaConfig extends Widget_Base
 		wp_dequeue_style('algolia-instantsearch');
 
 		// Enqueue Algolia for Elementor config.
-		wp_register_script('algolia-wp-plugin', plugins_url('/widgets/algolia/main.js'), array(), '0.0.0', true);
+		wp_register_script('algolia-wp-plugin', plugins_url('elementor/widgets/algolia/main.js', GALAXY), array(), '0.0.0', true);
 		wp_enqueue_script('algolia-wp-plugin');
 
 		// Enqueue Algolia for Elementor styles.

@@ -37,10 +37,6 @@ class AlgoliaHits extends Widget_Base
 	public function __construct($data = array(), $args = null)
 	{
 		parent::__construct($data, $args);
-
-		// Enqueue Algolia for Elementor config.
-		wp_register_script('algolia-wp-plugin-hits', plugins_url('/widgets/algolia/hits/main.js'), array(), '0.0.0', true);
-		wp_enqueue_script('algolia-wp-plugin-hits');
 	}
 
 	/**

@@ -81,7 +81,7 @@ final class Galaxy
 	 */
 	public function i18n()
 	{
-		load_plugin_textdomain('galaxy');
+		load_plugin_textdomain('galaxy-wp-plugin', false, plugin_basename(dirname(__FILE__)) . '/languages/');
 	}
 
 	/**
