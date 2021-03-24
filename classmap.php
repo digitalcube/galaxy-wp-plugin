@@ -12,3 +12,4 @@
 require_once 'includes/algolia/algolia.php';
 require_once 'includes/elementor/class-algolia-index.php';
 require_once 'includes/blocks/index.php';
+require_once 'includes/magic/magic.php';
