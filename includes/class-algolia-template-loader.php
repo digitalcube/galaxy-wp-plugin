@@ -3,9 +3,9 @@
  * Algolia_Template_Loader class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -28,7 +28,7 @@ class Algolia_Template_Loader {
 	 * Algolia_Template_Loader constructor.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param Algolia_Plugin $plugin The Algolia Plugin.
 	 */
@@ -69,7 +69,7 @@ class Algolia_Template_Loader {
 	 * Load config.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function load_algolia_config() {
 		$settings            = $this->plugin->get_settings();
@@ -108,7 +108,7 @@ class Algolia_Template_Loader {
 	 * Determines whether we should load autocomplete.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @return bool
 	 */
@@ -133,7 +133,7 @@ class Algolia_Template_Loader {
 	 * Enqueue Algolia autocomplete.js scripts.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function enqueue_autocomplete_scripts() {
 
@@ -160,7 +160,7 @@ class Algolia_Template_Loader {
 	 * overrides in /your-theme/algolia/ by default.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param mixed $template The template to load.
 	 *
@@ -180,7 +180,7 @@ class Algolia_Template_Loader {
 	 * Load the instantsearch template.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @return string
 	 */
@@ -205,7 +205,7 @@ class Algolia_Template_Loader {
 	 * Load the autocomplete template.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function load_autocomplete_template() {
 		require $this->locate_template( 'autocomplete.php' );
@@ -215,7 +215,7 @@ class Algolia_Template_Loader {
 	 * Locate a template.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param string $file The template file.
 	 *

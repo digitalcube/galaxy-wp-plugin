@@ -390,7 +390,7 @@ msgid "WP Search with Algolia"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/WebDevStudios/wp-search-with-algolia"
+msgid "https://github.com/WebDevStudios/galaxy-wp-plugin"
 msgstr ""
 
 #. Description of the plugin/theme

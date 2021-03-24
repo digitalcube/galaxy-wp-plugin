@@ -1,24 +1,20 @@
 <?php
 /**
- * Plugin Name:       Search
- * Plugin URI:        https://github.com/digitalcube/wp-search-with-algolia
- * Description:       Integrate the powerful Algolia search service with WordPress
+ * Plugin Name:       Galaxy
+ * Plugin URI:        https://github.com/digitalcube/galaxy-wp-plugin
+ * Description:       
  * Version:           0.0.0
  * Requires at least: 5.0
  * Requires PHP:      7.2
  * Author:            DigitalCube
  * Author URI:        https://digitalcube.jp
  * License:           GNU General Public License v2.0 / MIT License
- * Text Domain:       wp-search-with-algolia
+ * Text Domain:       galaxy-wp-plugin
  * Domain Path:       /languages
  *
- * @since   1.0.0
- * @package WebDevStudios\WPSWA
+ * @since   0.0.0
+ * @package DigitalCube\GalaxyWpPlugin 
  */
-
-// The following code is a derivative work of the code from the
-// Algolia Search plugin for WordPress, which is licensed GPLv2.
-// This code therefore is also licensed under the terms of the GNU Public License v2.0.
 
 // Nothing to see here if not loaded in WP context.
 if ( ! defined( 'WPINC' ) ) {
@@ -46,7 +42,7 @@ if ( ! defined( 'ALGOLIA_PATH' ) ) {
  * Check for required PHP version.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.1.0
+ * @since   0.0.0
  *
  * @return bool
  */
@@ -61,7 +57,7 @@ function algolia_php_version_check() {
  * Check for required WordPress version.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.1.0
+ * @since   0.0.0
  *
  * @return bool
  */
@@ -76,7 +72,7 @@ function algolia_wp_version_check() {
  * Admin notices if requirements aren't met.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.1.0
+ * @since   0.0.0
  */
 function algolia_requirements_error_notice() {
 
@@ -85,7 +81,7 @@ function algolia_requirements_error_notice() {
 	if ( ! algolia_php_version_check() ) {
 		$notices[] = sprintf(
 			/* translators: placeholder 1 is minimum required PHP version, placeholder 2 is installed PHP version. */
-			esc_html__( 'Algolia plugin requires PHP %1$s or higher. You’re still on %2$s.', 'wp-search-with-algolia' ),
+			esc_html__( 'Algolia plugin requires PHP %1$s or higher. You’re still on %2$s.', 'galaxy-wp-plugin' ),
 			esc_html( ALGOLIA_MIN_PHP_VERSION ),
 			esc_html( PHP_VERSION )
 		);
@@ -94,7 +90,7 @@ function algolia_requirements_error_notice() {
 	if ( ! algolia_wp_version_check() ) {
 		$notices[] = sprintf(
 			/* translators: placeholder 1 is minimum required WordPress version, placeholder 2 is installed WordPress version. */
-			esc_html__( 'Algolia plugin requires at least WordPress in version %1$s, You are on %2$s.', 'wp-search-with-algolia' ),
+			esc_html__( 'Algolia plugin requires at least WordPress in version %1$s, You are on %2$s.', 'galaxy-wp-plugin' ),
 			esc_html( ALGOLIA_MIN_WP_VERSION ),
 			esc_html( $GLOBALS['wp_version'] )
 		);
@@ -109,16 +105,16 @@ function algolia_requirements_error_notice() {
  * I18n.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  */
 function algolia_load_textdomain() {
 
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- This is a legitimate use of a global filter.
-	$locale = apply_filters( 'plugin_locale', get_locale(), 'wp-search-with-algolia' );
+	$locale = apply_filters( 'plugin_locale', get_locale(), 'galaxy-wp-plugin' );
 
-	load_textdomain( 'wp-search-with-algolia', WP_LANG_DIR . '/wp-search-with-algolia/wp-search-with-algolia-' . $locale . '.mo' );
+	load_textdomain( 'galaxy-wp-plugin', WP_LANG_DIR . '/galaxy-wp-plugin/galaxy-wp-plugin-' . $locale . '.mo' );
 
-	load_plugin_textdomain( 'wp-search-with-algolia', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'galaxy-wp-plugin', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 
 add_action( 'init', 'algolia_load_textdomain' );

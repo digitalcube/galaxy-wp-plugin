@@ -3,9 +3,9 @@
  * Algolia_Users_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -34,7 +34,7 @@ final class Algolia_Users_Index extends Algolia_Index {
 	 * @return string The name displayed in the admin UI.
 	 */
 	public function get_admin_name() {
-		return __( 'Users', 'wp-search-with-algolia' );
+		return __( 'Users', 'galaxy-wp-plugin' );
 	}
 
 	/**

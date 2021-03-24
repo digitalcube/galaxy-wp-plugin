@@ -3,9 +3,9 @@
  * Algolia_CLI class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -114,10 +114,10 @@ class Algolia_CLI extends \WP_CLI_Command {
 
 		if ( $clear ) {
 			/* translators: the placeholder will contain the name of the index. */
-			WP_CLI::log( sprintf( __( 'About to clear index %s...', 'wp-search-with-algolia' ), $index->get_name() ) );
+			WP_CLI::log( sprintf( __( 'About to clear index %s...', 'galaxy-wp-plugin' ), $index->get_name() ) );
 			$index->clear();
 			/* translators: the placeholder will contain the name of the index. */
-			WP_CLI::success( sprintf( __( 'Correctly cleared index "%s".', 'wp-search-with-algolia' ), $index->get_name() ) );
+			WP_CLI::success( sprintf( __( 'Correctly cleared index "%s".', 'galaxy-wp-plugin' ), $index->get_name() ) );
 		}
 
 		$total_pages = $index->get_re_index_max_num_pages();

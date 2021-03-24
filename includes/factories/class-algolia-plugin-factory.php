@@ -2,8 +2,8 @@
 /**
  * Algolia_Plugin_Factory class file.
  *
- * @since   1.6.0
- * @package WebDevStudios\WPSWA
+ * @since   0.0.0
+ * @package DigitalCube\Galaxy
  */
 
 /**

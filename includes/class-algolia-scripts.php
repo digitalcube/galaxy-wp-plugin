@@ -4,9 +4,9 @@
  * Algolia_Scripts class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.5.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**

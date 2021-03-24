@@ -2,8 +2,8 @@
 /**
  * Algolia_Search_Client_Factory class file.
  *
- * @since   1.6.0
- * @package WebDevStudios\WPSWA
+ * @since   0.0.0
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Algolia;

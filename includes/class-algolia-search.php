@@ -3,9 +3,9 @@
  * Algolia_Search class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;

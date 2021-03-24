@@ -3,10 +3,10 @@
  * WP Search With Algolia instantsearch template file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
  * @version 1.7.0
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 get_header();

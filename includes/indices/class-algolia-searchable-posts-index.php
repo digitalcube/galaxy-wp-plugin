@@ -3,9 +3,9 @@
  * Algolia_Searchable_Posts_Index class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -75,7 +75,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 * @return string The name displayed in the admin UI.
 	 */
 	public function get_admin_name() {
-		return __( 'Searchable posts', 'wp-search-with-algolia' );
+		return __( 'Searchable posts', 'galaxy-wp-plugin' );
 	}
 
 	/**

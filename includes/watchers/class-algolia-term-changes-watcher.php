@@ -3,9 +3,9 @@
  * Algolia_Term_Changes_Watcher class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
@@ -43,7 +43,7 @@ class Algolia_Term_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Watch WordPress events.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function watch() {
 		// Fires immediately after the given terms are edited.
@@ -60,7 +60,7 @@ class Algolia_Term_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Sync item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $term_id The term ID to sync.
 	 *
@@ -88,7 +88,7 @@ class Algolia_Term_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Handle term changes.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int    $object_id  Object ID.
 	 * @param array  $terms      An array of object terms.
@@ -109,7 +109,7 @@ class Algolia_Term_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Delete item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int    $term         Term ID.
 	 * @param int    $tt_id        Term taxonomy ID.

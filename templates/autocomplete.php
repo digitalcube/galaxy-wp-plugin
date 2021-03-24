@@ -3,10 +3,10 @@
  * WP Search With Algolia autocomplete template file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
  * @version 1.7.0
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 ?>
@@ -88,7 +88,7 @@
 
 <script type="text/html" id="tmpl-autocomplete-empty">
 	<div class="autocomplete-empty">
-		<?php esc_html_e( 'No results matched your query ', 'wp-search-with-algolia' ); ?>
+		<?php esc_html_e( 'No results matched your query ', 'galaxy-wp-plugin' ); ?>
 		<span class="empty-query">"{{ data.query }}"</span>
 	</div>
 </script>

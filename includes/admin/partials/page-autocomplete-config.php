@@ -3,9 +3,9 @@
  * Autocomplete config admin template partial.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 ?>
@@ -14,11 +14,11 @@
 	<thead>
 		<tr>
 			<th style="width: 20px;"></th>
-			<th style="width: 75px;"><?php esc_html_e( 'Enable', 'wp-search-with-algolia' ); ?></th>
-			<th><?php esc_html_e( 'Index', 'wp-search-with-algolia' ); ?></th>
-			<th><?php esc_html_e( 'Label', 'wp-search-with-algolia' ); ?></th>
-			<th style="width: 75px;"><?php esc_html_e( 'Max. Suggestions', 'wp-search-with-algolia' ); ?></th>
-			<th><?php esc_html_e( 'Actions', 'wp-search-with-algolia' ); ?></th>
+			<th style="width: 75px;"><?php esc_html_e( 'Enable', 'galaxy-wp-plugin' ); ?></th>
+			<th><?php esc_html_e( 'Index', 'galaxy-wp-plugin' ); ?></th>
+			<th><?php esc_html_e( 'Label', 'galaxy-wp-plugin' ); ?></th>
+			<th style="width: 75px;"><?php esc_html_e( 'Max. Suggestions', 'galaxy-wp-plugin' ); ?></th>
+			<th><?php esc_html_e( 'Actions', 'galaxy-wp-plugin' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -37,7 +37,7 @@
 					<?php
 					printf(
 						/* translators: placeholder is the name of an Algolia search index. */
-						esc_html__( 'Index name: %s', 'wp-search-with-algolia' ),
+						esc_html__( 'Index name: %s', 'galaxy-wp-plugin' ),
 						esc_html( $index['index_id'] )
 					);
 					?>
@@ -50,17 +50,17 @@
 				<input style="width: 40px; text-align: center;" type="number" name="algolia_autocomplete_config[<?php echo esc_attr( $index['index_id'] ); ?>][max_suggestions]"  value="<?php echo (int) $index['max_suggestions']; ?>" />
 			</td>
 			<td>
-				<button type="button" class="algolia-reindex-button button button-primary" data-index="<?php echo esc_attr( $index['index_id'] ); ?>"><?php esc_html_e( 'Re-index', 'wp-search-with-algolia' ); ?></button>
-				<button type="button" class="algolia-push-settings-button button" data-index="<?php echo esc_attr( $index['index_id'] ); ?>"><?php esc_html_e( 'Push Settings', 'wp-search-with-algolia' ); ?></button>
+				<button type="button" class="algolia-reindex-button button button-primary" data-index="<?php echo esc_attr( $index['index_id'] ); ?>"><?php esc_html_e( 'Re-index', 'galaxy-wp-plugin' ); ?></button>
+				<button type="button" class="algolia-push-settings-button button" data-index="<?php echo esc_attr( $index['index_id'] ); ?>"><?php esc_html_e( 'Push Settings', 'galaxy-wp-plugin' ); ?></button>
 			</td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
 <p class="description" id="home-description">
-	<?php esc_html_e( 'Configure here the indices you want to display in the dropdown menu.', 'wp-search-with-algolia' ); ?>
+	<?php esc_html_e( 'Configure here the indices you want to display in the dropdown menu.', 'galaxy-wp-plugin' ); ?>
 	<br />
-	<?php esc_html_e( 'Use the `Max. Suggestions` column to configure the number of entries that will be displayed by section.', 'wp-search-with-algolia' ); ?>
+	<?php esc_html_e( 'Use the `Max. Suggestions` column to configure the number of entries that will be displayed by section.', 'galaxy-wp-plugin' ); ?>
 	<br />
-	<?php esc_html_e( 'Use the `Position` column to reflect the order of the sections in the dropdown menu.', 'wp-search-with-algolia' ); ?>
+	<?php esc_html_e( 'Use the `Position` column to reflect the order of the sections in the dropdown menu.', 'galaxy-wp-plugin' ); ?>
 </p>

@@ -2,8 +2,8 @@
 /**
  * Algolia_Http_Client_Interface_Factory class file.
  *
- * @since   1.6.0
- * @package WebDevStudios\WPSWA
+ * @since   0.0.0
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Http\Guzzle6HttpClient;

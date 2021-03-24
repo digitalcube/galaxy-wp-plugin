@@ -3,9 +3,9 @@
  * Algolia_Admin class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -18,7 +18,7 @@ class Algolia_Admin {
 	/**
 	 * The Algolia Plugin.
 	 *
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @var Algolia_Plugin
 	 */
@@ -61,7 +61,7 @@ class Algolia_Admin {
 	 * Enqueue styles.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( 'algolia-admin', plugin_dir_url( __FILE__ ) . 'css/algolia-admin.css', array(), ALGOLIA_VERSION );
@@ -71,7 +71,7 @@ class Algolia_Admin {
 	 * Enqueue scripts.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script(
@@ -101,24 +101,24 @@ class Algolia_Admin {
 	 * Displays an error notice for every unmet requirement.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @return void
 	 */
 	public function display_unmet_requirements_notices() {
 		if ( ! extension_loaded( 'mbstring' ) ) {
 			echo '<div class="error notice">
-					  <p>' . esc_html__( 'Algolia Search requires the "mbstring" PHP extension to be enabled. Please contact your hosting provider.', 'wp-search-with-algolia' ) . '</p>
+					  <p>' . esc_html__( 'Algolia Search requires the "mbstring" PHP extension to be enabled. Please contact your hosting provider.', 'galaxy-wp-plugin' ) . '</p>
 				  </div>';
 		} elseif ( ! function_exists( 'mb_ereg_replace' ) ) {
 			echo '<div class="error notice">
-					  <p>' . esc_html__( 'Algolia needs "mbregex" NOT to be disabled. Please contact your hosting provider.', 'wp-search-with-algolia' ) . '</p>
+					  <p>' . esc_html__( 'Algolia needs "mbregex" NOT to be disabled. Please contact your hosting provider.', 'galaxy-wp-plugin' ) . '</p>
 				  </div>';
 		}
 
 		if ( ! extension_loaded( 'curl' ) ) {
 			echo '<div class="error notice">
-					  <p>' . esc_html__( 'Algolia Search requires the "cURL" PHP extension to be enabled. Please contact your hosting provider.', 'wp-search-with-algolia' ) . '</p>
+					  <p>' . esc_html__( 'Algolia Search requires the "cURL" PHP extension to be enabled. Please contact your hosting provider.', 'galaxy-wp-plugin' ) . '</p>
 				  </div>';
 
 			return;
@@ -131,7 +131,7 @@ class Algolia_Admin {
 	 * Display notice to help users adding 'algolia_' as an ignored query string to the db caching configuration.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @return void
 	 */
@@ -146,7 +146,7 @@ class Algolia_Admin {
 
 		if ( $enabled && ! in_array( 'algolia_', $settings, true ) ) {
 			/* translators: placeholder contains the URL to the caching plugin's config page. */
-			$message = sprintf( __( 'In order for <strong>database caching</strong> to work with Algolia you must add <code>algolia_</code> to the "Ignored Query Stems" option in W3 Total Cache settings <a href="%s">here</a>.', 'wp-search-with-algolia' ), esc_url( admin_url( 'admin.php?page=w3tc_dbcache' ) ) );
+			$message = sprintf( __( 'In order for <strong>database caching</strong> to work with Algolia you must add <code>algolia_</code> to the "Ignored Query Stems" option in W3 Total Cache settings <a href="%s">here</a>.', 'galaxy-wp-plugin' ), esc_url( admin_url( 'admin.php?page=w3tc_dbcache' ) ) );
 			?>
 			<div class="error">
 				<p><?php echo wp_kses_post( $message ); ?></p>
@@ -159,7 +159,7 @@ class Algolia_Admin {
 	 * Display reindexing notices.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function display_reindexing_notices() {
 		$indices = $this->plugin->get_indices(
@@ -183,7 +183,7 @@ class Algolia_Admin {
 					echo wp_kses(
 						sprintf(
 							/* Translators: placeholder is an Algolia index name. */
-							__( 'For Algolia search to work properly, you need to index: <strong>%1$s</strong>', 'wp-search-with-algolia' ),
+							__( 'For Algolia search to work properly, you need to index: <strong>%1$s</strong>', 'galaxy-wp-plugin' ),
 							esc_html( $index->get_admin_name() )
 						),
 						$allowed_html
@@ -192,7 +192,7 @@ class Algolia_Admin {
 				</p>
 				<p>
 					<button class="algolia-reindex-button button button-primary" data-index="<?php echo esc_attr( $index->get_id() ); ?>">
-						<?php esc_html_e( 'Index now', 'wp-search-with-algolia' ); ?>
+						<?php esc_html_e( 'Index now', 'galaxy-wp-plugin' ); ?>
 					</button>
 				</p>
 			</div>
@@ -204,7 +204,7 @@ class Algolia_Admin {
 	 * Re index.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @throws RuntimeException If index ID or page are not provided, or index name dies not exist.
 	 * @throws Exception If index ID or page are not provided, or index name dies not exist.
@@ -253,7 +253,7 @@ class Algolia_Admin {
 	 * Push settings.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @throws RuntimeException If index_id is not provided or if the corresponding index is null.
 	 * @throws Exception If index_id is not provided or if the corresponding index is null.

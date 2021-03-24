@@ -3,9 +3,9 @@
  * Algolia_User_Changes_Watcher class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
@@ -43,7 +43,7 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Watch WordPress events.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function watch() {
 		// Fires immediately after an existing user is updated.
@@ -67,7 +67,7 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Sync item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $user_id User ID.
 	 *
@@ -95,7 +95,7 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Delete item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $user_id ID of the user to delete.
 	 *
@@ -119,7 +119,7 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Ensures that the user post count gets updated.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int     $post_id Post ID.
 	 * @param WP_Post $post    Post object.
@@ -132,7 +132,7 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Ensures that the user post count gets updated.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $post_id Post ID.
 	 *

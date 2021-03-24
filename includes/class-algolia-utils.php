@@ -3,9 +3,9 @@
  * Algolia_Utils class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -19,7 +19,7 @@ class Algolia_Utils {
 	 * Retrieve term parents with separator.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int    $id        Term ID.
 	 * @param string $taxonomy  The taxonomy.
@@ -67,7 +67,7 @@ class Algolia_Utils {
 	 * @link    https://community.algolia.com/instantsearch.js/documentation/#hierarchicalmenu
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param array  $terms     The terms.
 	 * @param string $taxonomy  The taxonomy.
@@ -106,7 +106,7 @@ class Algolia_Utils {
 	 * Get post images.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -144,7 +144,7 @@ class Algolia_Utils {
 	 * Prepare content.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param string $content The content to prepare.
 	 *
@@ -162,7 +162,7 @@ class Algolia_Utils {
 	 * Remove noise from content.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param string $content The content to remove noise from.
 	 *
@@ -209,7 +209,7 @@ class Algolia_Utils {
 	 * Explode content.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param string $content The content to explode.
 	 *

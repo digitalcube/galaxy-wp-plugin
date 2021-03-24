@@ -3,9 +3,9 @@
  * Algolia_Post_Changes_Watcher class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
@@ -53,7 +53,7 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Watch WordPress events.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 */
 	public function watch() {
 		// Fires once a post has been saved.
@@ -78,7 +78,7 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Sync item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $post_id The post ID to sync.
 	 *
@@ -110,7 +110,7 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * Delete item.
 	 *
 	 * @author  WebDevStudios <contact@webdevstudios.com>
-	 * @since   1.0.0
+	 * @since   0.0.0
 	 *
 	 * @param int $post_id The post ID to delete.
 	 *

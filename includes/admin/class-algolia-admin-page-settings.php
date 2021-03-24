@@ -3,9 +3,9 @@
  * Algolia_Admin_Page_Settings class file.
  *
  * @author  WebDevStudios <contact@webdevstudios.com>
- * @since   1.0.0
+ * @since   0.0.0
  *
- * @package WebDevStudios\WPSWA
+ * @package DigitalCube\Galaxy
  */
 
 /**
@@ -97,7 +97,7 @@ class Algolia_Admin_Page_Settings {
 	public function add_action_links( array $links ) {
 		return array_merge(
 			$links, array(
-				'<a href="' . esc_url( admin_url( 'admin.php?page=' . $this->slug ) ) . '">' . esc_html__( 'Settings', 'wp-search-with-algolia' ) . '</a>',
+				'<a href="' . esc_url( admin_url( 'admin.php?page=' . $this->slug ) ) . '">' . esc_html__( 'Settings', 'galaxy-wp-plugin' ) . '</a>',
 			)
 		);
 	}
@@ -116,7 +116,7 @@ class Algolia_Admin_Page_Settings {
 			// Means this is the only reachable admin page, so make it the default one!
 			return add_menu_page(
 				'WP Search with Algolia',
-				esc_html__( 'Algolia Search', 'wp-search-with-algolia' ),
+				esc_html__( 'Algolia Search', 'galaxy-wp-plugin' ),
 				'manage_options',
 				$this->slug,
 				array( $this, 'display_page' ),
@@ -126,8 +126,8 @@ class Algolia_Admin_Page_Settings {
 
 		add_submenu_page(
 			'algolia',
-			esc_html__( 'Settings', 'wp-search-with-algolia' ),
-			esc_html__( 'Settings', 'wp-search-with-algolia' ),
+			esc_html__( 'Settings', 'galaxy-wp-plugin' ),
+			esc_html__( 'Settings', 'galaxy-wp-plugin' ),
 			$this->capability,
 			$this->slug,
 			array( $this, 'display_page' )
@@ -150,7 +150,7 @@ class Algolia_Admin_Page_Settings {
 
 		add_settings_field(
 			'algolia_application_id',
-			esc_html__( 'Application ID', 'wp-search-with-algolia' ),
+			esc_html__( 'Application ID', 'galaxy-wp-plugin' ),
 			array( $this, 'application_id_callback' ),
 			$this->slug,
 			$this->section
@@ -158,7 +158,7 @@ class Algolia_Admin_Page_Settings {
 
 		add_settings_field(
 			'algolia_search_api_key',
-			esc_html__( 'Search-only API key', 'wp-search-with-algolia' ),
+			esc_html__( 'Search-only API key', 'galaxy-wp-plugin' ),
 			array( $this, 'search_api_key_callback' ),
 			$this->slug,
 			$this->section
@@ -166,7 +166,7 @@ class Algolia_Admin_Page_Settings {
 
 		add_settings_field(
 			'algolia_api_key',
-			esc_html__( 'Admin API key', 'wp-search-with-algolia' ),
+			esc_html__( 'Admin API key', 'galaxy-wp-plugin' ),
 			array( $this, 'api_key_callback' ),
 			$this->slug,
 			$this->section
@@ -174,7 +174,7 @@ class Algolia_Admin_Page_Settings {
 
 		add_settings_field(
 			'algolia_index_name_prefix',
-			esc_html__( 'Index name prefix', 'wp-search-with-algolia' ),
+			esc_html__( 'Index name prefix', 'galaxy-wp-plugin' ),
 			array( $this, 'index_name_prefix_callback' ),
 			$this->slug,
 			$this->section
@@ -182,7 +182,7 @@ class Algolia_Admin_Page_Settings {
 
 		add_settings_field(
 			'algolia_powered_by_enabled',
-			esc_html__( 'Remove Algolia powered by logo', 'wp-search-with-algolia' ),
+			esc_html__( 'Remove Algolia powered by logo', 'galaxy-wp-plugin' ),
 			array( $this, 'powered_by_enabled_callback' ),
 			$this->slug,
 			$this->section
@@ -208,7 +208,7 @@ class Algolia_Admin_Page_Settings {
 		$disabled_html = $settings->is_application_id_in_config() ? ' disabled' : '';
 ?>
 		<input type="text" name="algolia_application_id" class="regular-text" value="<?php echo esc_attr( $setting ); ?>" <?php echo esc_html( $disabled_html ); ?>/>
-		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia Application ID.', 'wp-search-with-algolia' ); ?></p>
+		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia Application ID.', 'galaxy-wp-plugin' ); ?></p>
 <?php
 	}
 
@@ -225,7 +225,7 @@ class Algolia_Admin_Page_Settings {
 
 ?>
 		<input type="text" name="algolia_search_api_key" class="regular-text" value="<?php echo esc_attr( $setting ); ?>" <?php echo esc_html( $disabled_html ); ?>/>
-		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia Search-only API key (public).', 'wp-search-with-algolia' ); ?></p>
+		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia Search-only API key (public).', 'galaxy-wp-plugin' ); ?></p>
 <?php
 	}
 
@@ -241,7 +241,7 @@ class Algolia_Admin_Page_Settings {
 		$disabled_html = $settings->is_api_key_in_config() ? ' disabled' : '';
 ?>
 		<input type="password" name="algolia_api_key" class="regular-text" value="<?php echo esc_attr( $setting ); ?>" <?php echo esc_html( $disabled_html ); ?>/>
-		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia ADMIN API key (kept private).', 'wp-search-with-algolia' ); ?></p>
+		<p class="description" id="home-description"><?php esc_html_e( 'Your Algolia ADMIN API key (kept private).', 'galaxy-wp-plugin' ); ?></p>
 <?php
 	}
 
@@ -257,7 +257,7 @@ class Algolia_Admin_Page_Settings {
 		$disabled_html     = $settings->is_index_name_prefix_in_config() ? ' disabled' : '';
 ?>
 		<input type="text" name="algolia_index_name_prefix" value="<?php echo esc_attr( $index_name_prefix ); ?>" <?php echo esc_html( $disabled_html ); ?>/>
-		<p class="description" id="home-description"><?php esc_html_e( 'This prefix will be prepended to your index names.', 'wp-search-with-algolia' ); ?></p>
+		<p class="description" id="home-description"><?php esc_html_e( 'This prefix will be prepended to your index names.', 'galaxy-wp-plugin' ); ?></p>
 <?php
 	}
 
@@ -274,7 +274,7 @@ class Algolia_Admin_Page_Settings {
 			$checked = ' checked';
 		}
 		echo "<input type='checkbox' name='algolia_powered_by_enabled' value='no' " . esc_html( $checked ) . ' />' .
-			'<p class="description" id="home-description">' . esc_html( __( 'This will remove the Algolia logo from the autocomplete and the search page. We require that you keep the Algolia logo if you are using a free plan.', 'wp-search-with-algolia' ) ) . '</p>';
+			'<p class="description" id="home-description">' . esc_html( __( 'This will remove the Algolia logo from the autocomplete and the search page. We require that you keep the Algolia logo if you are using a free plan.', 'galaxy-wp-plugin' ) ) . '</p>';
 	}
 
 	/**
@@ -297,7 +297,7 @@ class Algolia_Admin_Page_Settings {
 			add_settings_error(
 				$this->option_group,
 				'empty',
-				esc_html__( 'Application ID should not be empty.', 'wp-search-with-algolia' )
+				esc_html__( 'Application ID should not be empty.', 'galaxy-wp-plugin' )
 			);
 
 		}
@@ -325,7 +325,7 @@ class Algolia_Admin_Page_Settings {
 			add_settings_error(
 				$this->option_group,
 				'empty',
-				esc_html__( 'Search-only API key should not be empty.', 'wp-search-with-algolia' )
+				esc_html__( 'Search-only API key should not be empty.', 'galaxy-wp-plugin' )
 			);
 		}
 
@@ -352,7 +352,7 @@ class Algolia_Admin_Page_Settings {
 			add_settings_error(
 				$this->option_group,
 				'empty',
-				esc_html__( 'API key should not be empty', 'wp-search-with-algolia' )
+				esc_html__( 'API key should not be empty', 'galaxy-wp-plugin' )
 			);
 		}
 
@@ -383,7 +383,7 @@ class Algolia_Admin_Page_Settings {
 				'no_connection',
 				esc_html__(
 					'We were unable to authenticate you against the Algolia servers with the provided information. Please ensure that you used a valid Application ID and Admin API key.',
-					'wp-search-with-algolia'
+					'galaxy-wp-plugin'
 				)
 			);
 			$settings->set_api_is_reachable( false );
@@ -394,7 +394,7 @@ class Algolia_Admin_Page_Settings {
 					'wrong_search_API_key',
 					esc_html__(
 						'It looks like your search API key is wrong. Ensure that the key you entered has only the search capability and nothing else. Also ensure that the key has no limited time validity.',
-						'wp-search-with-algolia'
+						'galaxy-wp-plugin'
 					)
 				);
 				$settings->set_api_is_reachable( false );
@@ -402,7 +402,7 @@ class Algolia_Admin_Page_Settings {
 				add_settings_error(
 					$this->option_group,
 					'connection_success',
-					esc_html__( 'We succesfully managed to connect to the Algolia servers with the provided information. Your search API key has also been checked and is OK.', 'wp-search-with-algolia' ),
+					esc_html__( 'We succesfully managed to connect to the Algolia servers with the provided information. Your search API key has also been checked and is OK.', 'galaxy-wp-plugin' ),
 					'updated'
 				);
 				$settings->set_api_is_reachable( true );
@@ -450,7 +450,7 @@ class Algolia_Admin_Page_Settings {
 		add_settings_error(
 			$this->option_group,
 			'wrong_prefix',
-			esc_html__( 'Indices prefix can only contain alphanumeric characters and underscores.', 'wp-search-with-algolia' )
+			esc_html__( 'Indices prefix can only contain alphanumeric characters and underscores.', 'galaxy-wp-plugin' )
 		);
 
 		$value = get_option( 'algolia_index_name_prefix' );
@@ -499,9 +499,9 @@ class Algolia_Admin_Page_Settings {
 	 * @since  1.0.0
 	 */
 	public function print_section_settings() {
-		echo '<p>' . esc_html__( 'Configure your Algolia account credentials. You can find them in the "API Keys" section of your Algolia dashboard.', 'wp-search-with-algolia' ) . '</p>';
-		echo '<p>' . esc_html__( 'Once you provide your Algolia Application ID and API key, this plugin will be able to securely communicate with Algolia servers.', 'wp-search-with-algolia' ) . ' ' . esc_html__( 'We ensure your information is correct by testing them against the Algolia servers upon save.', 'wp-search-with-algolia' ) . '</p>';
+		echo '<p>' . esc_html__( 'Configure your Algolia account credentials. You can find them in the "API Keys" section of your Algolia dashboard.', 'galaxy-wp-plugin' ) . '</p>';
+		echo '<p>' . esc_html__( 'Once you provide your Algolia Application ID and API key, this plugin will be able to securely communicate with Algolia servers.', 'galaxy-wp-plugin' ) . ' ' . esc_html__( 'We ensure your information is correct by testing them against the Algolia servers upon save.', 'galaxy-wp-plugin' ) . '</p>';
 		/* translators: the placeholder contains the URL to Algolia's website. */
-		echo '<p>' . wp_kses_post( sprintf( __( 'No Algolia account yet? <a href="%s">Follow this link</a> to create one for free in a couple of minutes!', 'wp-search-with-algolia' ), 'https://www.algolia.com/users/sign_up' ) ) . '</p>';
+		echo '<p>' . wp_kses_post( sprintf( __( 'No Algolia account yet? <a href="%s">Follow this link</a> to create one for free in a couple of minutes!', 'galaxy-wp-plugin' ), 'https://www.algolia.com/users/sign_up' ) ) . '</p>';
 	}
 }
