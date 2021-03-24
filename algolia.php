@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Galaxy
  * Plugin URI:        https://github.com/digitalcube/galaxy-wp-plugin
- * Description:       
+ * Description:       TODO: Add description.
  * Version:           0.0.0
  * Requires at least: 5.0
  * Requires PHP:      7.2
@@ -13,7 +13,7 @@
  * Domain Path:       /languages
  *
  * @since   0.0.0
- * @package DigitalCube\GalaxyWpPlugin 
+ * @package DigitalCube\GalaxyWpPlugin
  */
 
 // Nothing to see here if not loaded in WP context.
