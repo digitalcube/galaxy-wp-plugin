@@ -39,7 +39,7 @@ class GalaxyTable extends Widget_Base
 		parent::__construct($data, $args);
 
 		add_action('elementor/frontend/after_enqueue_scripts', function () {
-			wp_register_script('galaxy-table', plugins_url('/widgets/table/main.js', GALAXY), array(), '0.0.0',);
+			wp_register_script('galaxy-table', plugins_url('main.js', __FILE__), array(), '0.0.0',);
 			wp_enqueue_script('galaxy-table');
 		});
 	}
