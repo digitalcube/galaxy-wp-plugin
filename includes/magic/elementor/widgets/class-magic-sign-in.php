@@ -53,6 +53,7 @@ class MagicSignIn extends Widget_Base
 			'templates' => [
 				'unauthorized' => '<div class="magic-sign-in">
 				<form onsubmit="handleLogin(event)">
+				<label for="email">Email</label>
 		<input type="email" name="email" required="required" placeholder="Enter your email" />
 		<button type="submit">Sign-in</button>
 	</form></div>',
