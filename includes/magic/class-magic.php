@@ -66,10 +66,10 @@ final class Magic
 		add_action('plugins_loaded', array($this, 'init'));
 
 		// Register Magic SDK.
-		wp_register_script('magic-sdk', 'https://cdn.jsdelivr.net/npm/magic-sdk@latest/dist/magic.js', array(), 'latest', true);
+		// wp_register_script('magic-sdk', 'https://cdn.jsdelivr.net/npm/magic-sdk@latest/dist/magic.js', array(), 'latest', true);
 
 		// Load Magic SDK.
-		wp_enqueue_script('magic-sdk');
+		// wp_enqueue_script('magic-sdk');
 	}
 
 	/**

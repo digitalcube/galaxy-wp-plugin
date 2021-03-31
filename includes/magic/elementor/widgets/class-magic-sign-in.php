@@ -57,12 +57,11 @@ class MagicSignIn extends Widget_Base
 		<input type="email" name="email" required="required" placeholder="Enter your email" />
 		<button type="submit">Sign-in</button>
 	</form></div>',
-				'authorized' => '<p>Current member: <span data-magic-meta="user-email">${magic.user.email}</span></p>
-<button onclick="handleLogout()">Logout</button>',
+				'authorized' => '<div id="magic-user-profile"></div><button onclick="handleLogout()">Logout</button>',
 			]
 		);
 
-		wp_localize_script('magic-wp-plugin', 'settings', $config);
+		wp_localize_script('magic-wp-plugin', 'magicSettings', $config);
 	}
 
 	/**

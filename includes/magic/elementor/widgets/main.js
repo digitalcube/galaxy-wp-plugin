@@ -1,33 +1,35 @@
 let magic = new Magic(magic_wp.publishable_key_0);
 let authorized = false;
-const authorizedTemplate = settings.templates.authorized;
-const unauthorizedTemplate = settings.templates.unauthorized;
+const authorizedTemplate = magicSettings.templates.authorized;
+const unauthorizedTemplate = magicSettings.templates.unauthorized;
 
 // Magic Sign-in
 const MagicSignIn = async () => {
-  let html = "";
+  html = "";
+  email = "";
+
+  const userMetadata = await magic.user.getMetadata();
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {
     try {
       await magic.auth.loginWithCredential();
-      const userMetadata = await magic.user.getMetadata();
       html = authorizedTemplate;
     } catch {
       window.location.href = window.location.origin;
     }
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
-
     html = unauthorizedTemplate;
-
     if (isLoggedIn) {
-      const userMetadata = await magic.user.getMetadata();
+      if (window.location.pathname === `/sign-in/`) {
+        window.location.href = `/members/account/`;
+      }
       html = authorizedTemplate;
     }
   }
 
   if (document.getElementById("magic-sign-in")) {
-    document.getElementById("magic-sign-in").innerHTML = html;
+    document.querySelector("#magic-sign-in").innerHTML = html;
   }
 };
 
@@ -51,25 +53,5 @@ const handleLogout = async () => {
 document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#magic-sign-in").length > 0) {
     MagicSignIn();
-  }
-});
-
-// Magic Private
-const MagicPrivate = async () => {
-  let html = "";
-
-  const isLoggedIn = await magic.user.isLoggedIn();
-  if (!isLoggedIn) {
-    html = unauthorizedTemplate;
-  }
-
-  if (document.getElementById("magic-private")) {
-    document.querySelector("#magic-private").innerHTML = html;
-  }
-};
-
-document.addEventListener("DOMContentLoaded", function (event) {
-  if (jQuery("#magic-private").length > 0) {
-    return MagicPrivate();
   }
 });

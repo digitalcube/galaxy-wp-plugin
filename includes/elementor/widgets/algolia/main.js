@@ -274,28 +274,72 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   // Algolia Find Object with Magic Auth
   if (jQuery("#algolia-object").length > 0) {
-    const authorize = async () => {
-      let authorized = false;
+    const MagicPrivateContent = async () => {
+      const isLoggedIn = await magic.user.isLoggedIn();
       const index = searchClient.initIndex(`${indexName}`);
+      const userMetadata = await magic.user.getMetadata();
+      const email = userMetadata.email;
+      const algoliaObject = document.querySelectorAll("#algolia-object");
       const postId = settings.postId;
-      let algoliaObject = document.querySelectorAll("#algolia-object");
-      if (typeof magic !== "undefined") {
-        authorized = await magic.user.isLoggedIn();
-        algoliaObject.forEach((item) => {
-          if (authorized === true) {
-            index.getObject(`${postId}-0`).then((object) => {
-              let parser = new DOMParser();
-              const content = parser.parseFromString(
-                object.content,
-                "text/html"
-              );
-              item.innerHTML = content.body.innerHTML;
+
+      if (isLoggedIn) {
+        index
+          .findObject((hit) => hit.post_title == email)
+          .then((obj) => {
+            console.log(obj);
+          });
+
+        index
+          .search(`${email}`, {
+            hitsPerPage: 1,
+            facetFilters: ["taxonomies.category:User Member"],
+          })
+          .then(({ hits }) => {
+            algoliaObject.forEach((item) => {
+              index.getObject(`${postId}-0`).then((object) => {
+                let parser = new DOMParser();
+                const content = parser.parseFromString(
+                  object.content,
+                  "text/html"
+                );
+                item.innerHTML = content.body.innerHTML;
+              });
             });
-          }
-        });
+          });
       }
     };
 
-    authorize();
+    MagicPrivateContent();
+  }
+
+  // User profile
+  if (jQuery("#magic-sign-in").length > 0) {
+    const MagicUserProfile = async () => {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      const index = searchClient.initIndex(`${indexName}`);
+      const userMetadata = await magic.user.getMetadata();
+      const email = userMetadata.email;
+      console.log(email);
+      if (isLoggedIn) {
+        index
+          .search(`${email}`, {
+            hitsPerPage: 1,
+            facetFilters: ["taxonomies.category:User Member"],
+          })
+          .then(({ hits }) => {
+            if (hits.length > 0) {
+              let parser = new DOMParser();
+              const content = parser.parseFromString(
+                hits[0].content,
+                "text/html"
+              );
+              document.querySelector("#magic-user-profile").innerHTML =
+                content.body.innerHTML;
+            }
+          });
+      }
+    };
+
+    MagicUserProfile();
   }
 });
