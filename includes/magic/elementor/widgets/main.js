@@ -29,7 +29,6 @@ const MagicSignIn = async () => {
 
   if (document.getElementById("magic-sign-in")) {
     document.querySelector("#magic-sign-in").innerHTML = html;
-    document.querySelector("#magic-user-email").innerHTML = email;
   }
 };
 
@@ -53,25 +52,5 @@ const handleLogout = async () => {
 document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#magic-sign-in").length > 0) {
     MagicSignIn();
-  }
-});
-
-// Magic Private
-const MagicPrivate = async () => {
-  let html = "";
-
-  const isLoggedIn = await magic.user.isLoggedIn();
-  if (!isLoggedIn) {
-    html = unauthorizedTemplate;
-  }
-
-  if (document.getElementById("magic-private")) {
-    document.querySelector("#magic-private").innerHTML = html;
-  }
-};
-
-document.addEventListener("DOMContentLoaded", function (event) {
-  if (jQuery("#magic-private").length > 0) {
-    return MagicPrivate();
   }
 });

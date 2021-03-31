@@ -298,4 +298,34 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     authorize();
   }
+
+  // User profile
+  if (jQuery("#magic-sign-in").length > 0) {
+    const MagicUserProfile = async () => {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      const index = searchClient.initIndex(`${indexName}`);
+      const userMetadata = await magic.user.getMetadata();
+      const email = userMetadata.email;
+
+      if (isLoggedIn) {
+        index
+          .search(`${email}`, {
+            hitsPerPage: 1,
+            facetFilters: ["taxonomies.category:User Member"],
+          })
+          .then(({ hits }) => {
+            console.log(hits[0]);
+            let parser = new DOMParser();
+            const content = parser.parseFromString(
+              hits[0].content,
+              "text/html"
+            );
+            document.querySelector("#magic-user-profile").innerHTML =
+              content.body.innerHTML;
+          });
+      }
+    };
+
+    MagicUserProfile();
+  }
 });
