@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Algolia_Searchable_Posts_Index class file.
  *
@@ -13,7 +14,8 @@
  *
  * @since 1.0.0
  */
-final class Algolia_Searchable_Posts_Index extends Algolia_Index {
+final class Algolia_Searchable_Posts_Index extends Algolia_Index
+{
 
 	/**
 	 * What this index contains.
@@ -43,7 +45,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @param array $post_types The post types.
 	 */
-	public function __construct( array $post_types ) {
+	public function __construct(array $post_types)
+	{
 		$this->post_types = $post_types;
 	}
 
@@ -62,8 +65,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return bool
 	 */
-	public function supports( $item ) {
-		return $item instanceof WP_Post && in_array( $item->post_type, $this->post_types, true );
+	public function supports($item)
+	{
+		return $item instanceof WP_Post && in_array($item->post_type, $this->post_types, true);
 	}
 
 	/**
@@ -74,8 +78,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return string The name displayed in the admin UI.
 	 */
-	public function get_admin_name() {
-		return __( 'Searchable posts', 'galaxy-wp-plugin' );
+	public function get_admin_name()
+	{
+		return __('Searchable posts', 'galaxy-wp-plugin');
 	}
 
 	/**
@@ -88,8 +93,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return bool
 	 */
-	protected function should_index( $item ) {
-		return $this->should_index_post( $item );
+	protected function should_index($item)
+	{
+		return $this->should_index_post($item);
 	}
 
 	/**
@@ -102,10 +108,11 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return bool
 	 */
-	private function should_index_post( WP_Post $post ) {
-		$should_index = 'publish' === $post->post_status && empty( $post->post_password );
+	private function should_index_post(WP_Post $post)
+	{
+		$should_index = 'publish' === $post->post_status && empty($post->post_password);
 
-		return (bool) apply_filters( 'algolia_should_index_searchable_post', $should_index, $post );
+		return (bool) apply_filters('algolia_should_index_searchable_post', $should_index, $post);
 	}
 
 	/**
@@ -118,8 +125,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return array
 	 */
-	protected function get_records( $item ) {
-		return $this->get_post_records( $item );
+	protected function get_records($item)
+	{
+		return $this->get_post_records($item);
 	}
 
 	/**
@@ -137,36 +145,37 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return array
 	 */
-	private function get_post_records( WP_Post $post ) {
-		$shared_attributes = $this->get_post_shared_attributes( $post );
+	private function get_post_records(WP_Post $post)
+	{
+		$shared_attributes = $this->get_post_shared_attributes($post);
 
-		$removed = remove_filter( 'the_content', 'wptexturize', 10 );
+		$removed = remove_filter('the_content', 'wptexturize', 10);
 
-		$post_content = apply_filters( 'algolia_searchable_post_content', $post->post_content, $post );
-		$post_content = apply_filters( 'the_content', $post_content ); // phpcs:ignore -- Legitimate use of Core hook.
+		$post_content = apply_filters('algolia_searchable_post_content', $post->post_content, $post);
+		$post_content = apply_filters('the_content', $post_content); // phpcs:ignore -- Legitimate use of Core hook.
 
-		if ( true === $removed ) {
-			add_filter( 'the_content', 'wptexturize', 10 );
+		if (true === $removed) {
+			add_filter('the_content', 'wptexturize', 10);
 		}
 
-		$post_content = Algolia_Utils::prepare_content( $post_content );
-		$parts        = Algolia_Utils::explode_content( $post_content );
+		$post_content = Algolia_Utils::prepare_content($post_content);
+		$parts        = Algolia_Utils::explode_content($post_content);
 
-		if ( defined( 'ALGOLIA_SPLIT_POSTS' ) && false === ALGOLIA_SPLIT_POSTS ) {
-			$parts = array( array_shift( $parts ) );
+		if (defined('ALGOLIA_SPLIT_POSTS') && false === ALGOLIA_SPLIT_POSTS) {
+			$parts = array(array_shift($parts));
 		}
 
 		$records = array();
-		foreach ( $parts as $i => $part ) {
+		foreach ($parts as $i => $part) {
 			$record                 = $shared_attributes;
-			$record['objectID']     = $this->get_post_object_id( $post->ID, $i );
+			$record['objectID']     = $this->get_post_object_id($post->ID, $i);
 			$record['content']      = $part;
 			$record['record_index'] = $i;
 			$records[]              = $record;
 		}
 
-		$records = (array) apply_filters( 'algolia_searchable_post_records', $records, $post );
-		$records = (array) apply_filters( 'algolia_searchable_post_' . $post->post_type . '_records', $records, $post );
+		$records = (array) apply_filters('algolia_searchable_post_records', $records, $post);
+		$records = (array) apply_filters('algolia_searchable_post_' . $post->post_type . '_records', $records, $post);
 
 		return $records;
 	}
@@ -183,26 +192,27 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @throws RuntimeException If post type information unknown.
 	 */
-	private function get_post_shared_attributes( WP_Post $post ) {
+	private function get_post_shared_attributes(WP_Post $post)
+	{
 		$shared_attributes              = array();
 		$shared_attributes['post_id']   = $post->ID;
 		$shared_attributes['post_type'] = $post->post_type;
 
-		$post_type = get_post_type_object( $post->post_type );
-		if ( null === $post_type ) {
-			throw new RuntimeException( 'Unable to fetch the post type information.' );
+		$post_type = get_post_type_object($post->post_type);
+		if (null === $post_type) {
+			throw new RuntimeException('Unable to fetch the post type information.');
 		}
 		$shared_attributes['post_type_label']     = $post_type->labels->name;
 		$shared_attributes['post_title']          = $post->post_title;
-		$shared_attributes['post_excerpt']        = apply_filters( 'the_excerpt', $post->post_excerpt ); // phpcs:ignore -- Legitimate use of Core hook.
-		$shared_attributes['post_date']           = get_post_time( 'U', false, $post );
-		$shared_attributes['post_date_formatted'] = get_the_date( '', $post );
-		$shared_attributes['post_modified']       = get_post_modified_time( 'U', false, $post );
+		$shared_attributes['post_excerpt']        = apply_filters('the_excerpt', $post->post_excerpt); // phpcs:ignore -- Legitimate use of Core hook.
+		$shared_attributes['post_date']           = get_post_time('U', false, $post);
+		$shared_attributes['post_date_formatted'] = get_the_date('', $post);
+		$shared_attributes['post_modified']       = get_post_modified_time('U', false, $post);
 		$shared_attributes['comment_count']       = (int) $post->comment_count;
 		$shared_attributes['menu_order']          = (int) $post->menu_order;
 
-		$author = get_userdata( $post->post_author );
-		if ( $author ) {
+		$author = get_userdata($post->post_author);
+		if ($author) {
 			$shared_attributes['post_author'] = array(
 				'user_id'      => (int) $post->post_author,
 				'display_name' => $author->display_name,
@@ -211,37 +221,37 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 			);
 		}
 
-		$shared_attributes['images'] = Algolia_Utils::get_post_images( $post->ID );
+		$shared_attributes['images'] = Algolia_Utils::get_post_images($post->ID);
 
-		$shared_attributes['permalink']      = get_permalink( $post );
+		$shared_attributes['permalink']      = get_permalink($post);
 		$shared_attributes['post_mime_type'] = $post->post_mime_type;
 
 		// Push all taxonomies by default, including custom ones.
-		$taxonomy_objects = get_object_taxonomies( $post->post_type, 'objects' );
+		$taxonomy_objects = get_object_taxonomies($post->post_type, 'objects');
 
 		$shared_attributes['taxonomies']              = array();
 		$shared_attributes['taxonomies_hierarchical'] = array();
-		foreach ( $taxonomy_objects as $taxonomy ) {
-			$terms = wp_get_object_terms( $post->ID, $taxonomy->name );
-			$terms = is_array( $terms ) ? $terms : array();
+		foreach ($taxonomy_objects as $taxonomy) {
+			$terms = wp_get_object_terms($post->ID, $taxonomy->name);
+			$terms = is_array($terms) ? $terms : array();
 
-			if ( $taxonomy->hierarchical ) {
-				$hierarchical_taxonomy_values = Algolia_Utils::get_taxonomy_tree( $terms, $taxonomy->name );
-				if ( ! empty( $hierarchical_taxonomy_values ) ) {
-					$shared_attributes['taxonomies_hierarchical'][ $taxonomy->name ] = $hierarchical_taxonomy_values;
+			if ($taxonomy->hierarchical) {
+				$hierarchical_taxonomy_values = Algolia_Utils::get_taxonomy_tree($terms, $taxonomy->name);
+				if (!empty($hierarchical_taxonomy_values)) {
+					$shared_attributes['taxonomies_hierarchical'][$taxonomy->name] = $hierarchical_taxonomy_values;
 				}
 			}
 
-			$taxonomy_values = wp_list_pluck( $terms, 'name' );
-			if ( ! empty( $taxonomy_values ) ) {
-				$shared_attributes['taxonomies'][ $taxonomy->name ] = $taxonomy_values;
+			$taxonomy_values = wp_list_pluck($terms, 'name');
+			if (!empty($taxonomy_values)) {
+				$shared_attributes['taxonomies'][$taxonomy->name] = $taxonomy_values;
 			}
 		}
 
-		$shared_attributes['is_sticky'] = is_sticky( $post->ID ) ? 1 : 0;
+		$shared_attributes['is_sticky'] = is_sticky($post->ID) ? 1 : 0;
 
-		$shared_attributes = (array) apply_filters( 'algolia_searchable_post_shared_attributes', $shared_attributes, $post );
-		$shared_attributes = (array) apply_filters( 'algolia_searchable_post_' . $post->post_type . '_shared_attributes', $shared_attributes, $post );
+		$shared_attributes = (array) apply_filters('algolia_searchable_post_shared_attributes', $shared_attributes, $post);
+		$shared_attributes = (array) apply_filters('algolia_searchable_post_' . $post->post_type . '_shared_attributes', $shared_attributes, $post);
 
 		return $shared_attributes;
 	}
@@ -254,7 +264,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return array
 	 */
-	protected function get_settings() {
+	protected function get_settings()
+	{
 		$settings = array(
 			'attributesToIndex'     => array(
 				'unordered(post_title)',
@@ -276,12 +287,12 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 			),
 			'attributesToSnippet'   => array(
 				'post_title:30',
-				'content:' . intval( apply_filters( 'excerpt_length', 55 ) ), // phpcs:ignore -- Legitimate use of Core hook.
+				'content:' . intval(apply_filters('excerpt_length', 55)), // phpcs:ignore -- Legitimate use of Core hook.
 			),
 			'snippetEllipsisText'   => '…',
 		);
 
-		$settings = (array) apply_filters( 'algolia_searchable_posts_index_settings', $settings );
+		$settings = (array) apply_filters('algolia_searchable_posts_index_settings', $settings);
 
 		return $settings;
 	}
@@ -294,8 +305,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return array
 	 */
-	protected function get_synonyms() {
-		$synonyms = (array) apply_filters( 'algolia_searchable_posts_index_synonyms', array() );
+	protected function get_synonyms()
+	{
+		$synonyms = (array) apply_filters('algolia_searchable_posts_index_synonyms', array());
 
 		return $synonyms;
 	}
@@ -311,7 +323,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return string
 	 */
-	private function get_post_object_id( $post_id, $record_index ) {
+	private function get_post_object_id($post_id, $record_index)
+	{
 		/**
 		 * This filter is documented in includes/indices/class-algolia-posts-index.php
 		 *
@@ -336,8 +349,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 * @param mixed $item    The item to update records for.
 	 * @param array $records The records.
 	 */
-	protected function update_records( $item, array $records ) {
-		$this->update_post_records( $item, $records );
+	protected function update_records($item, array $records)
+	{
+		$this->update_post_records($item, $records);
 	}
 
 	/**
@@ -349,21 +363,22 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 * @param WP_Post $post    The post to update records for.
 	 * @param array   $records The records.
 	 */
-	private function update_post_records( WP_Post $post, array $records ) {
+	private function update_post_records(WP_Post $post, array $records)
+	{
 		// If there are no records, parent `update_records` will take care of the deletion.
 		// In case of posts, we ALWAYS need to delete existing records.
-		if ( ! empty( $records ) ) {
-			$this->delete_item( $post );
+		if (!empty($records)) {
+			$this->delete_item($post);
 		}
 
-		parent::update_records( $post, $records );
+		parent::update_records($post, $records);
 
 		// Keep track of the new record count for future updates relying on the objectID's naming convention .
-		$new_records_count = count( $records );
-		$this->set_post_records_count( $post, $new_records_count );
+		$new_records_count = count($records);
+		$this->set_post_records_count($post, $new_records_count);
 
-		do_action( 'algolia_searchable_posts_index_post_updated', $post, $records );
-		do_action( 'algolia_searchable_posts_index_post_' . $post->post_type . '_updated', $post, $records );
+		do_action('algolia_searchable_posts_index_post_updated', $post, $records);
+		do_action('algolia_searchable_posts_index_post_' . $post->post_type . '_updated', $post, $records);
 	}
 
 	/**
@@ -374,7 +389,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return string
 	 */
-	public function get_id() {
+	public function get_id()
+	{
 		return 'searchable_posts';
 	}
 
@@ -386,11 +402,12 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return int
 	 */
-	protected function get_re_index_items_count() {
+	protected function get_re_index_items_count()
+	{
 		$query = new WP_Query(
 			array(
 				'post_type'              => $this->post_types,
-				'post_status'            => 'any', // Let the `should_index` take care of the filtering.
+				'post_status'            => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
 				'suppress_filters'       => true,
 				'cache_results'          => false,
 				'lazy_load_term_meta'    => false,
@@ -412,12 +429,13 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return array
 	 */
-	protected function get_items( $page, $batch_size ) {
+	protected function get_items($page, $batch_size)
+	{
 		$query = new WP_Query(
 			array(
 				'post_type'              => $this->post_types,
 				'posts_per_page'         => $batch_size,
-				'post_status'            => 'any',
+				'post_status'            => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
 				'order'                  => 'ASC',
 				'orderby'                => 'ID',
 				'paged'                  => $page,
@@ -439,17 +457,18 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @param mixed $item The item to delete.
 	 */
-	public function delete_item( $item ) {
-		$this->assert_is_supported( $item );
+	public function delete_item($item)
+	{
+		$this->assert_is_supported($item);
 
-		$records_count = $this->get_post_records_count( $item->ID );
+		$records_count = $this->get_post_records_count($item->ID);
 		$object_ids    = array();
-		for ( $i = 0; $i < $records_count; $i++ ) {
-			$object_ids[] = $this->get_post_object_id( $item->ID, $i );
+		for ($i = 0; $i < $records_count; $i++) {
+			$object_ids[] = $this->get_post_object_id($item->ID, $i);
 		}
 
-		if ( ! empty( $object_ids ) ) {
-			$this->get_index()->deleteObjects( $object_ids );
+		if (!empty($object_ids)) {
+			$this->get_index()->deleteObjects($object_ids);
 		}
 	}
 
@@ -463,8 +482,9 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 *
 	 * @return int
 	 */
-	private function get_post_records_count( $post_id ) {
-		return (int) get_post_meta( (int) $post_id, 'algolia_' . $this->get_id() . '_records_count', true );
+	private function get_post_records_count($post_id)
+	{
+		return (int) get_post_meta((int) $post_id, 'algolia_' . $this->get_id() . '_records_count', true);
 	}
 	/**
 	 * Get post records count.
@@ -475,7 +495,8 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index {
 	 * @param WP_Post $post  The post.
 	 * @param int     $count The count of records.
 	 */
-	private function set_post_records_count( WP_Post $post, $count ) {
-		update_post_meta( (int) $post->ID, 'algolia_' . $this->get_id() . '_records_count', (int) $count );
+	private function set_post_records_count(WP_Post $post, $count)
+	{
+		update_post_meta((int) $post->ID, 'algolia_' . $this->get_id() . '_records_count', (int) $count);
 	}
 }
