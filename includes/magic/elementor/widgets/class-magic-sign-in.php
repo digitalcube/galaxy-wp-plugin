@@ -57,7 +57,7 @@ class MagicSignIn extends Widget_Base
 		<input type="email" name="email" required="required" placeholder="Enter your email" />
 		<button type="submit">Sign-in</button>
 	</form></div>',
-				'authorized' => '<div id="magic-user-profile">{user profile}</div><button onclick="handleLogout()">Logout</button>',
+				'authorized' => '<div id="magic-user-profile"></div><button onclick="handleLogout()">Logout</button>',
 			]
 		);
 

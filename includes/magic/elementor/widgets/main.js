@@ -7,8 +7,6 @@ const unauthorizedTemplate = magicSettings.templates.unauthorized;
 const MagicSignIn = async () => {
   html = "";
   email = "";
-  // profile =
-  //   "<p>william.o'reilly@prudential.com</p><p>Prudential Financial</p><p>Director, Stable Value</p><p>Voting Member:</p><p>Board Member:</p><p>Work Phone:</p><p>Cell Phone:</p>";
 
   const userMetadata = await magic.user.getMetadata();
 
@@ -23,6 +21,9 @@ const MagicSignIn = async () => {
     const isLoggedIn = await magic.user.isLoggedIn();
     html = unauthorizedTemplate;
     if (isLoggedIn) {
+      if (window.location.pathname === `/sign-in/`) {
+        window.location.href = `/members/account/`;
+      }
       html = authorizedTemplate;
     }
   }
