@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Algolia_Post_Changes_Watcher class file.
  *
@@ -15,7 +16,8 @@ use Algolia\AlgoliaSearch\Exceptions\AlgoliaException;
  *
  * @since 1.0.0
  */
-class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
+class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher
+{
 
 	/**
 	 * Algolia_Index instance.
@@ -45,7 +47,8 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 *
 	 * @param Algolia_Index $index Algolia_Index instance.
 	 */
-	public function __construct( Algolia_Index $index ) {
+	public function __construct(Algolia_Index $index)
+	{
 		$this->index = $index;
 	}
 
@@ -55,23 +58,24 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 * @author  WebDevStudios <contact@webdevstudios.com>
 	 * @since   0.0.0
 	 */
-	public function watch() {
+	public function watch()
+	{
 		// Fires once a post has been saved.
-		add_action( 'save_post', array( $this, 'sync_item' ) );
+		add_action('save_post', array($this, 'sync_item'));
 
 		// Fires before a post is deleted, at the start of wp_delete_post().
 		// At this stage the post metas are still available, and we need them.
-		add_action( 'before_delete_post', array( $this, 'delete_item' ) );
+		add_action('before_delete_post', array($this, 'delete_item'));
 
 		// Handle meta changes after the change occurred.
-		add_action( 'added_post_meta', array( $this, 'on_meta_change' ), 10, 4 );
-		add_action( 'updated_post_meta', array( $this, 'on_meta_change' ), 10, 4 );
-		add_action( 'deleted_post_meta', array( $this, 'on_meta_change' ), 10, 4 );
+		add_action('added_post_meta', array($this, 'on_meta_change'), 10, 4);
+		add_action('updated_post_meta', array($this, 'on_meta_change'), 10, 4);
+		add_action('deleted_post_meta', array($this, 'on_meta_change'), 10, 4);
 
 		// Handle attachment changes. These are required because the other post hooks are not triggered.
-		add_action( 'add_attachment', array( $this, 'sync_item' ) );
-		add_action( 'attachment_updated', array( $this, 'sync_item' ) );
-		add_action( 'delete_attachment', array( $this, 'delete_item' ) );
+		add_action('add_attachment', array($this, 'sync_item'));
+		add_action('attachment_updated', array($this, 'sync_item'));
+		add_action('delete_attachment', array($this, 'delete_item'));
 	}
 
 	/**
@@ -84,25 +88,58 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 *
 	 * @return void
 	 */
-	public function sync_item( $post_id ) {
+	public function sync_item($post_id)
+	{
 
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		// TODO: This prevents sync from triggering 4x, not sure why.
+		if (defined('REST_REQUEST')  && REST_REQUEST) {
 			return;
 		}
 
-		if ( in_array( $post_id, $this->posts_deleted, true ) ) {
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
 			return;
 		}
 
-		$post = get_post( (int) $post_id );
-		if ( ! $post || ! $this->index->supports( $post ) ) {
+		if (wp_is_post_revision($post_id)) {
+			return;
+		}
+
+		if (wp_is_post_autosave($post_id)) {
+			return;
+		}
+
+		if (in_array($post_id, $this->posts_deleted, true)) {
+			return;
+		}
+
+		$post = get_post((int) $post_id);
+		if (!$post || !$this->index->supports($post)) {
 			return;
 		}
 
 		try {
-			$this->index->sync( $post );
-		} catch ( AlgoliaException $exception ) {
-			error_log( $exception->getMessage() ); // phpcs:ignore -- Legacy.
+
+			// TODO: Migrarte sync function to Algolia HTTP REST API
+
+			// $body = wp_json_encode( array('objectID' => $post_id, 'post_title' => 'foo'));
+
+			// wp_safe_remote_post(
+			// 	'https://Z1W1DGFIWF.algolia.net/1/indexes/wp_post',
+			// 	array(
+			// 		'method' => 'POST',
+			// 		'data_format' => 'body',
+			// 		'headers' => array(
+			// 			'Content-Type' => 'application/json; charset=utf-8',
+			// 			'X-Algolia-API-Key' => 'be7cab6b8401b9820fb424855dc3cb39',
+			// 			'X-Algolia-Application-Id' => 'Z1W1DGFIWF',
+			// 		),
+			// 		'body' => $body,
+			// 	)
+			// );
+
+			$this->index->sync($post);
+		} catch (AlgoliaException $exception) {
+			error_log($exception->getMessage()); // phpcs:ignore -- Legacy.
 		}
 	}
 
@@ -116,18 +153,19 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 *
 	 * @return void
 	 */
-	public function delete_item( $post_id ) {
+	public function delete_item($post_id)
+	{
 
-		$post = get_post( (int) $post_id );
-		if ( ! $post || ! $this->index->supports( $post ) ) {
+		$post = get_post((int) $post_id);
+		if (!$post || !$this->index->supports($post)) {
 			return;
 		}
 
 		try {
-			$this->index->delete_item( $post );
+			$this->index->delete_item($post);
 			$this->posts_deleted[] = $post->ID;
-		} catch ( AlgoliaException $exception ) {
-			error_log( $exception->getMessage() ); // phpcs:ignore -- Legacy.
+		} catch (AlgoliaException $exception) {
+			error_log($exception->getMessage()); // phpcs:ignore -- Legacy.
 		}
 	}
 
@@ -143,14 +181,15 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 	 *
 	 * @return void
 	 */
-	public function on_meta_change( $meta_id, $object_id, $meta_key ) {
-		$keys = array( '_thumbnail_id' );
-		$keys = (array) apply_filters( 'algolia_watch_post_meta_keys', $keys, $object_id );
+	public function on_meta_change($meta_id, $object_id, $meta_key)
+	{
+		$keys = array('_thumbnail_id');
+		$keys = (array) apply_filters('algolia_watch_post_meta_keys', $keys, $object_id);
 
-		if ( ! in_array( $meta_key, $keys, true ) ) {
+		if (!in_array($meta_key, $keys, true)) {
 			return;
 		}
 
-		$this->sync_item( $object_id );
+		$this->sync_item($object_id);
 	}
 }
