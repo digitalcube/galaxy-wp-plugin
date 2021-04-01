@@ -124,14 +124,14 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher
 			// $body = wp_json_encode( array('objectID' => $post_id, 'post_title' => 'foo'));
 
 			// wp_safe_remote_post(
-			// 	'https://Z1W1DGFIWF.algolia.net/1/indexes/wp_post',
+			// 	'https://xxx.algolia.net/1/indexes/wp_post',
 			// 	array(
 			// 		'method' => 'POST',
 			// 		'data_format' => 'body',
 			// 		'headers' => array(
 			// 			'Content-Type' => 'application/json; charset=utf-8',
-			// 			'X-Algolia-API-Key' => 'be7cab6b8401b9820fb424855dc3cb39',
-			// 			'X-Algolia-Application-Id' => 'Z1W1DGFIWF',
+			// 			'X-Algolia-API-Key' => '',
+			// 			'X-Algolia-Application-Id' => '',
 			// 		),
 			// 		'body' => $body,
 			// 	)
