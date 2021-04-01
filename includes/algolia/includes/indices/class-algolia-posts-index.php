@@ -206,6 +206,8 @@ final class Algolia_Posts_Index extends Algolia_Index {
 		$shared_attributes['post_modified']       = get_post_modified_time( 'U', false, $post );
 		$shared_attributes['comment_count']       = (int) $post->comment_count;
 		$shared_attributes['menu_order']          = (int) $post->menu_order;
+		$shared_attributes['post_status']         = (string) $post->post_status;
+
 
 		$author = get_userdata( $post->post_author );
 		if ( $author ) {
