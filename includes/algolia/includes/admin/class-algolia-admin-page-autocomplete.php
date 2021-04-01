@@ -111,8 +111,8 @@ class Algolia_Admin_Page_Autocomplete {
 		);
 		add_submenu_page(
 			'algolia',
-			esc_html__( 'Autocomplete', 'galaxy-wp-plugin' ),
-			esc_html__( 'Autocomplete', 'galaxy-wp-plugin' ),
+			esc_html__( 'Algolia', 'galaxy-wp-plugin' ),
+			esc_html__( 'Algolia', 'galaxy-wp-plugin' ),
 			$this->capability,
 			$this->slug,
 			array( $this, 'display_page' )
