@@ -115,9 +115,11 @@ abstract class Algolia_Index {
 	 * @throws RuntimeException If the given item is not supported.
 	 */
 	public function assert_is_supported( $item ) {
-		if ( ! $this->supports( $item ) ) {
-			throw new RuntimeException( 'Item is no supported on this index.' );
-		}
+		
+		// TODO: Determine a new method for is_supported filtering. For now, allow all.
+		// if ( ! $this->supports( $item ) ) {
+		// 	throw new RuntimeException( 'Item is no supported on this index.' );
+		// }
 	}
 
 	/**

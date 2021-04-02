@@ -78,11 +78,18 @@ class Algolia_User_Changes_Watcher implements Algolia_Changes_Watcher {
 			return;
 		}
 
-		$user = get_user_by( 'id', $user_id );
+		$user = array();
+		// $user['ID'] = $user_id;
+		// $user['description'] = get_userdata($user_id)->description;
+		// $user['display_name'] = get_userdata($user_id)->display_name;
+		// $user['user_login'] = get_userdata($user_id)->user_login;
 
-		if ( ! $user || ! $this->index->supports( $user ) ) {
-			return;
-		}
+		// TODO: Determine how users are filtered.
+		// if ( ! $user || ! $this->index->supports( $user ) ) {
+		// 	return;
+		// }
+
+		$user = get_user_by('id', $user_id)->data;
 
 		try {
 			$this->index->sync( $user );

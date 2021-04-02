@@ -54,6 +54,9 @@ final class Algolia_Users_Index extends Algolia_Index {
 			$should_index = (int) count_user_posts( $item->ID ) > 0;
 		}
 
+		// TODO: Determine how users are filtered.
+		$should_index = true;
+
 		return (bool) apply_filters( 'algolia_should_index_user', $should_index, $item );
 	}
 
@@ -72,6 +75,7 @@ final class Algolia_Users_Index extends Algolia_Index {
 		$record['objectID']     = $item->ID;
 		$record['user_id']      = $item->ID;
 		$record['display_name'] = $item->display_name;
+		$record['user_email']   = $item->user_email;
 		$record['posts_url']    = get_author_posts_url( $item->ID, $item->user_nicename );
 		$record['description']  = get_the_author_meta( 'description', $item->ID );
 
