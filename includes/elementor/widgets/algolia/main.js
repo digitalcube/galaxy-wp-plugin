@@ -284,6 +284,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       if (isLoggedIn) {
         index
+          .findObject((hit) => hit.post_title == email)
+          .then((obj) => {
+            console.log(obj);
+          });
+
+        index
           .search(`${email}`, {
             hitsPerPage: 1,
             facetFilters: ["taxonomies.category:User Member"],
@@ -313,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       const index = searchClient.initIndex(`${indexName}`);
       const userMetadata = await magic.user.getMetadata();
       const email = userMetadata.email;
+      console.log(email);
       if (isLoggedIn) {
         index
           .search(`${email}`, {
