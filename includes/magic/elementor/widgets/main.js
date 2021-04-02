@@ -1,4 +1,5 @@
 let magic = new Magic(magic_wp.publishable_key_0);
+console.log(magic);
 let authorized = false;
 const authorizedTemplate = magicSettings.templates.authorized;
 const unauthorizedTemplate = magicSettings.templates.unauthorized;
@@ -7,8 +8,6 @@ const unauthorizedTemplate = magicSettings.templates.unauthorized;
 const MagicSignIn = async () => {
   html = "";
   email = "";
-
-  const userMetadata = await magic.user.getMetadata();
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {
     try {
