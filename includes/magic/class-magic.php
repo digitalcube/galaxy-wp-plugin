@@ -134,7 +134,7 @@ final class Magic
 	 */
 	public function admin_notice_missing_main_plugin()
 	{
-		deactivate_plugins(plugin_basename(ALGOLIA));
+		// deactivate_plugins(plugin_basename(ALGOLIA));
 
 		return sprintf(
 			wp_kses(
@@ -162,7 +162,7 @@ final class Magic
 	 */
 	public function admin_notice_minimum_elementor_version()
 	{
-		deactivate_plugins(plugin_basename(ALGOLIA));
+		// deactivate_plugins(plugin_basename(ALGOLIA));
 
 		return sprintf(
 			wp_kses(
@@ -191,7 +191,7 @@ final class Magic
 	 */
 	public function admin_notice_minimum_php_version()
 	{
-		deactivate_plugins(plugin_basename(ALGOLIA));
+		// deactivate_plugins(plugin_basename(ALGOLIA));
 
 		return sprintf(
 			wp_kses(

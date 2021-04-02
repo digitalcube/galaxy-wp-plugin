@@ -122,11 +122,12 @@ final class Algolia_Posts_Index extends Algolia_Index
 				$post_status = 'publish';
 			}
 		}
-
-		// $should_index = 'publish' === $post_status && empty($post->post_password);
+    
+		// TODO: Update to include private posts.
+		// $should_index = 'publish' === $post_status && empty( $post->post_password );
 		$should_index = true;
 
-		return (bool) apply_filters('algolia_should_index_post', $should_index, $post);
+		return (bool) apply_filters( 'algolia_should_index_post', $should_index, $post );
 	}
 
 	/**
@@ -207,16 +208,18 @@ final class Algolia_Posts_Index extends Algolia_Index
 	private function get_post_shared_attributes(WP_Post $post)
 	{
 		$shared_attributes                        = array();
-		$shared_attributes['post_id']             = $post->ID;
-		$shared_attributes['post_type']           = $post->post_type;
-		$shared_attributes['post_type_label']     = $this->get_admin_name();
-		$shared_attributes['post_title']          = $post->post_title;
-		$shared_attributes['post_excerpt']        = apply_filters('the_excerpt', $post->post_excerpt); // phpcs:ignore -- Legitimate use of Core hook.
-		$shared_attributes['post_date']           = get_post_time('U', false, $post);
-		$shared_attributes['post_date_formatted'] = get_the_date('', $post);
-		$shared_attributes['post_modified']       = get_post_modified_time('U', false, $post);
+		$shared_attributes['post_id']             = (int) $post->ID;
+		$shared_attributes['post_type']           = (string) $post->post_type;
+		$shared_attributes['post_type_label']     = (string) $this->get_admin_name();
+		$shared_attributes['post_title']          = (string) $post->post_title;
+		$shared_attributes['post_excerpt']        = (string) apply_filters( 'the_excerpt', $post->post_excerpt ); // phpcs:ignore -- Legitimate use of Core hook.
+		$shared_attributes['post_date']           = (int) get_post_time( 'U', false, $post );
+		$shared_attributes['post_date_formatted'] = (string) get_the_date( '', $post );
+		$shared_attributes['post_modified']       = (int) get_post_modified_time( 'U', false, $post );
 		$shared_attributes['comment_count']       = (int) $post->comment_count;
 		$shared_attributes['menu_order']          = (int) $post->menu_order;
+		$shared_attributes['post_status']         = (string) $post->post_status;
+
 
 		$author = get_userdata($post->post_author);
 		if ($author) {
