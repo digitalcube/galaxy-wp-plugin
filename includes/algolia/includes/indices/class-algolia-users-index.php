@@ -72,12 +72,13 @@ final class Algolia_Users_Index extends Algolia_Index {
 	 */
 	protected function get_records( $item ) {
 		$record                 = array();
-		$record['objectID']     = $item->ID;
+		$record['ID']    				= $item->ID;
 		$record['user_id']      = $item->ID;
 		$record['display_name'] = $item->display_name;
 		$record['user_email']   = $item->user_email;
 		$record['posts_url']    = get_author_posts_url( $item->ID, $item->user_nicename );
 		$record['description']  = get_the_author_meta( 'description', $item->ID );
+		$record['roles']        = get_userdata( $item->ID )->roles;
 
 		if ( function_exists( 'wpcom_vip_count_user_posts' ) ) {
 			$record['posts_count'] = (int) wpcom_vip_count_user_posts( $item->ID );

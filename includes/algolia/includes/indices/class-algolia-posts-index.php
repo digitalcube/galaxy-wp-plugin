@@ -430,7 +430,7 @@ final class Algolia_Posts_Index extends Algolia_Index
 		$query = new WP_Query(
 			array(
 				'post_type'        => $this->post_type,
-				'post_status'      => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
+				'post_status'      => 'any',
 				'suppress_filters' => true,
 			)
 		);
@@ -454,7 +454,7 @@ final class Algolia_Posts_Index extends Algolia_Index
 		$query = new WP_Query(
 			array(
 				'post_type'        => $this->post_type,
-				'post_status'      => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
+				'post_status'      => 'any',
 				'order'            => 'ASC',
 				'orderby'          => 'ID',
 				'paged'            => $page,
