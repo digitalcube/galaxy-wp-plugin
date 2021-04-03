@@ -315,22 +315,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (isLoggedIn) {
         const index = searchClient.initIndex(`${indexName}`);
         const userMetadata = await magic.user.getMetadata();
-        const email = `dolson@digitalcube.jp`;
+        const email = userMetadata.email;
         index
           .findObject((hit) => hit.user_email == email)
           .then((hit) => {
-            const { display_name, user_email, description } = hit.object;
-            console.log(hit.object);
+            const { nickname, user_email, description } = hit.object;
 
             // User display name.
             document
               .querySelector("#magic-user-profile")
               .insertAdjacentHTML("afterbegin", description);
 
+            // User email.
+            document
+              .querySelector("#magic-user-profile")
+              .insertAdjacentHTML("afterbegin", `<p>${user_email}</p>`);
+
             // User profile description.
             document
               .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", `<h2>${display_name}</h2>`);
+              .insertAdjacentHTML("afterbegin", `<h2>${nickname}</h2>`);
           });
       }
     };
