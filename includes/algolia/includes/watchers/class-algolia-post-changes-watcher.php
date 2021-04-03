@@ -101,6 +101,7 @@ class Algolia_Post_Changes_Watcher implements Algolia_Changes_Watcher {
 
 		try {
 			$this->index->sync( $post );
+			error_log(print_r($post, true));
 		} catch ( AlgoliaException $exception ) {
 			error_log( $exception->getMessage() ); // phpcs:ignore -- Legacy.
 		}

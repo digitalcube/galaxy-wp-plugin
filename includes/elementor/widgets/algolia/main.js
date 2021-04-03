@@ -284,12 +284,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       if (isLoggedIn) {
         index
-          .findObject((hit) => hit.post_title == email)
-          .then((obj) => {
-            console.log(obj);
-          });
-
-        index
           .search(`${email}`, {
             hitsPerPage: 1,
             facetFilters: ["taxonomies.category:User Member"],
@@ -297,6 +291,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
           .then(({ hits }) => {
             algoliaObject.forEach((item) => {
               index.getObject(`${postId}-0`).then((object) => {
+                // TODO: Remove DOMParser for performance, use insertAdjacentHTML.
+                // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
                 let parser = new DOMParser();
                 const content = parser.parseFromString(
                   object.content,
@@ -316,26 +312,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#magic-sign-in").length > 0) {
     const MagicUserProfile = async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
-      const index = searchClient.initIndex(`${indexName}`);
-      const userMetadata = await magic.user.getMetadata();
-      const email = userMetadata.email;
-      console.log(email);
       if (isLoggedIn) {
+        const index = searchClient.initIndex(`${indexName}`);
+        const userMetadata = await magic.user.getMetadata();
+        const email = userMetadata.email;
         index
-          .search(`${email}`, {
-            hitsPerPage: 1,
-            facetFilters: ["taxonomies.category:User Member"],
-          })
-          .then(({ hits }) => {
-            if (hits.length > 0) {
-              let parser = new DOMParser();
-              const content = parser.parseFromString(
-                hits[0].content,
-                "text/html"
-              );
-              document.querySelector("#magic-user-profile").innerHTML =
-                content.body.innerHTML;
-            }
+          .findObject((hit) => hit.user_email == email)
+          .then((hit) => {
+            const { nickname, user_email, description } = hit.object;
+
+            // User display name.
+            document
+              .querySelector("#magic-user-profile")
+              .insertAdjacentHTML("afterbegin", description);
+
+            // User email.
+            document
+              .querySelector("#magic-user-profile")
+              .insertAdjacentHTML("afterbegin", `<p>${user_email}</p>`);
+
+            // User profile description.
+            document
+              .querySelector("#magic-user-profile")
+              .insertAdjacentHTML("afterbegin", `<h2>${nickname}</h2>`);
           });
       }
     };
