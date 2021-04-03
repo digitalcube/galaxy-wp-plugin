@@ -1,5 +1,4 @@
 let magic = new Magic(magic_wp.publishable_key_0);
-console.log(magic);
 let authorized = false;
 const authorizedTemplate = magicSettings.templates.authorized;
 const unauthorizedTemplate = magicSettings.templates.unauthorized;
