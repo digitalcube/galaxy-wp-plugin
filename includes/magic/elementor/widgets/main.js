@@ -45,7 +45,7 @@ const handleLogin = async (e) => {
 /* Logout Handler */
 const handleLogout = async () => {
   await magic.user.logout();
-  render();
+  window.location.href = window.location.origin;
 };
 
 document.addEventListener("DOMContentLoaded", function (event) {
