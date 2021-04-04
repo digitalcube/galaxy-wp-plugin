@@ -1,0 +1,12 @@
+{
+  "name": "galaxy-wp-plugin",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/digitalcube/galaxy-wp-plugin",
+  "author": "Daniel Olson <emaildano@gmail.com>",
+  "license": "GNU General Public License v2.0 / MIT License",
+  "scripts": {
+    "phpcs": "phpcs --standard=WordPress-VIP-Go ./ -spv --ignore=./includes/algolia/includes/libraries --extensions=php",
+    "phpcs": "phpcbf --standard=WordPress-VIP-Go ./ --ignore=./includes/algolia/includes/libraries"
+  }
+}
