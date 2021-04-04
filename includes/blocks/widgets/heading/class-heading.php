@@ -37,10 +37,6 @@ class GalaxyHeading extends Widget_Base
 	public function __construct($data = array(), $args = null)
 	{
 		parent::__construct($data, $args);
-
-		// add_action('elementor/frontend/after_enqueue_styles', function () {
-		// 	wp_register_style('galaxy_heading', plugins_url('/widgets/heading/style.css', GALAXY), array(), '0.0.0');
-		// });
 	}
 
 	/**
