@@ -7,6 +7,6 @@
   "license": "GNU General Public License v2.0 / MIT License",
   "scripts": {
     "phpcs": "phpcs --standard=WordPress-VIP-Go ./ -spv --ignore=./includes/algolia/includes/libraries --extensions=php",
-    "phpcs": "phpcbf --standard=WordPress-VIP-Go ./ --ignore=./includes/algolia/includes/libraries"
+    "phpcbf": "phpcbf --standard=WordPress-VIP-Go ./ --ignore=./includes/algolia/includes/libraries"
   }
 }
