@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             // User display name.
             document
               .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", description);
+              .insertAdjacentHTML("afterbegin", nickname);
 
             // User email.
             document
@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             // User profile description.
             document
               .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", `<h2>${nickname}</h2>`);
+              .insertAdjacentHTML("afterbegin", `<h2>${description}</h2>`);
           });
       }
     };
