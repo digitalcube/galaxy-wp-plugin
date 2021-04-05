@@ -20,7 +20,7 @@ const MagicSignIn = async () => {
     html = unauthorizedTemplate;
     if (isLoggedIn) {
       if (window.location.pathname === `/sign-in/`) {
-        window.location.href = `/members/account/`;
+        window.location.href = magic_wp.redirect_uri_0;
       }
       html = authorizedTemplate;
     }

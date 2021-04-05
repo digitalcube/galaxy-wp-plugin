@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   // Algolia Find Object with Magic Auth
   if (jQuery("#algolia-object").length > 0) {
-    const MagicPrivateContent = async () => {
+    const MagicAlgoliaObject = async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
       const index = searchClient.initIndex(`${indexName}`);
       const algoliaObject = document.querySelectorAll("#algolia-object");
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
     };
 
-    MagicPrivateContent();
+    MagicAlgoliaObject();
   }
 
   // User profile
@@ -336,11 +336,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
 
   if (jQuery("#magic-private").length > 0) {
-    if (!authorized) {
-      document.getElementById("magic-private").innerHTML =
-        "Sign in to view member content.";
-    }
-  }
+    const MagicPrivate = async () => {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      if (isLoggedIn) {
+        search.start();
+      } else {
+        document.getElementById("magic-private").innerHTML =
+          "Sign in to view member content.";
+      }
+    };
 
-  search.start();
+    MagicPrivate();
+  } else {
+    search.start();
+  }
 });
