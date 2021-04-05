@@ -267,9 +267,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#magic-private").length > 0) {
     if (authorized) {
       search.start();
+    } else {
+      document.getElementById("magic-private").innerHTML =
+        "Sign in to view member content.";
     }
-  } else {
-    search.start();
   }
 
   // Algolia Find Object with Magic Auth
