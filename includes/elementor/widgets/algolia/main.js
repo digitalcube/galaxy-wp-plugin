@@ -269,12 +269,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const MagicPrivateContent = async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
       const index = searchClient.initIndex(`${indexName}`);
-      const userMetadata = await magic.user.getMetadata();
-      const email = userMetadata.email;
       const algoliaObject = document.querySelectorAll("#algolia-object");
       const postId = settings.postId;
 
       if (isLoggedIn) {
+        const userMetadata = await magic.user.getMetadata();
+        const email = userMetadata.email;
+
         index
           .search(`${email}`, {
             hitsPerPage: 1,
