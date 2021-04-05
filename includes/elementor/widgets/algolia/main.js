@@ -264,15 +264,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     search.addWidget(breadcrumbs);
   }
 
-  if (jQuery("#magic-private").length > 0) {
-    if (authorized) {
-      search.start();
-    } else {
-      document.getElementById("magic-private").innerHTML =
-        "Sign in to view member content.";
-    }
-  }
-
   // Algolia Find Object with Magic Auth
   if (jQuery("#algolia-object").length > 0) {
     const MagicPrivateContent = async () => {
@@ -342,4 +333,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     MagicUserProfile();
   }
+
+  if (jQuery("#magic-private").length > 0) {
+    if (!authorized) {
+      document.getElementById("magic-private").innerHTML =
+        "Sign in to view member content.";
+    }
+  }
+
+  search.start();
 });
