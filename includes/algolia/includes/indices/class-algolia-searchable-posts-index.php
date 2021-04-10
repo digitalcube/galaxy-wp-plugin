@@ -407,7 +407,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index
 		$query = new WP_Query(
 			array(
 				'post_type'              => $this->post_types,
-				'post_status'            => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
+				'post_status'            => array('publish', 'private'),
 				'suppress_filters'       => true,
 				'cache_results'          => false,
 				'lazy_load_term_meta'    => false,
@@ -435,7 +435,7 @@ final class Algolia_Searchable_Posts_Index extends Algolia_Index
 			array(
 				'post_type'              => $this->post_types,
 				'posts_per_page'         => $batch_size,
-				'post_status'            => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash'),
+				'post_status'            => array('publish', 'private'),
 				'order'                  => 'ASC',
 				'orderby'                => 'ID',
 				'paged'                  => $page,

@@ -71,9 +71,9 @@ final class Algolia_Users_Index extends Algolia_Index {
 	 * @return array
 	 */
 	protected function get_records( $item ) {
-		error_log(print_r(get_the_author_meta( 'nickname', $item->ID ), true));
 
 		$record                 = array();
+		$record['objectID']    	= $item->ID;
 		$record['ID']    				= $item->ID;
 		$record['user_id']      = $item->ID;
 		$record['display_name'] = $item->display_name;

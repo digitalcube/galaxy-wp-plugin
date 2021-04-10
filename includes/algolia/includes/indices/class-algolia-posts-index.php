@@ -127,6 +127,8 @@ final class Algolia_Posts_Index extends Algolia_Index
 		// $should_index = 'publish' === $post_status && empty( $post->post_password );
 		$should_index = true;
 
+		error_log(print_r($post, true));
+
 		return (bool) apply_filters( 'algolia_should_index_post', $should_index, $post );
 	}
 
