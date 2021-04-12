@@ -13,7 +13,7 @@ const MagicSignIn = async () => {
       await magic.auth.loginWithCredential();
       html = authorizedTemplate;
     } catch {
-      window.location.href = window.location.origin;
+      window.location.href = `/sign-in/`;
     }
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
@@ -22,7 +22,6 @@ const MagicSignIn = async () => {
       if (window.location.pathname === `/sign-in/`) {
         window.location.href = magic_wp.redirect_uri_0;
       }
-      html = authorizedTemplate;
     }
   }
 

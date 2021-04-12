@@ -331,7 +331,7 @@ abstract class Algolia_Index {
 
 		$index   = $this->get_index();
 		$records = $this->sanitize_json_data( $records );
-		$index->saveObjects( $records, ['objectIDKey' => 'ID'] );
+		$index->saveObjects( $records );
 	}
 
 	/**
@@ -416,9 +416,7 @@ abstract class Algolia_Index {
 
 			$records = $this->sanitize_json_data( $records );
 
-			error_log(print_r($records), true);
-
-			$index->saveObjects( $records, ['objectIDKey' => 'ID'] );
+			$index->saveObjects( $records );
 		}
 
 		if ( $page === $max_num_pages ) {
