@@ -13,14 +13,14 @@ const MagicSignIn = async () => {
       await magic.auth.loginWithCredential();
       html = authorizedTemplate;
     } catch {
-      window.location.href = `/sign-in/`;
+      // window.location.href = `/sign-in/`;
     }
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
     html = unauthorizedTemplate;
     if (isLoggedIn) {
       if (window.location.pathname === `/sign-in/`) {
-        window.location.href = magic_wp.redirect_uri_0;
+        // window.location.href = magic_wp.redirect_uri_0;
       }
     }
   }
