@@ -52,10 +52,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 
-if (jQuery("#magic-sign-in").length > 0) {
-  MagicSignIn();
-}
-
 /* Login Handler */
 const handleLogin = async (e) => {
   e.preventDefault();
