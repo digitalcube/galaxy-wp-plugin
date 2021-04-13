@@ -3,32 +3,58 @@ let authorized = false;
 const authorizedTemplate = magicSettings.templates.authorized;
 const unauthorizedTemplate = magicSettings.templates.unauthorized;
 
-// Magic Sign-in
+// Check if user is logged in.
 const MagicSignIn = async () => {
+  document.querySelector("#magic-sign-in").innerHTML = unauthorizedTemplate;
   html = "";
   email = "";
 
-  if (window.location.pathname === magic_wp.redirect_uri_0) {
-    try {
-      await magic.auth.loginWithCredential();
-      html = authorizedTemplate;
-    } catch {
-      // window.location.href = `/sign-in/`;
+  try {
+    await magic.auth.loginWithCredential();
+    // State: User is logged in.
+    console.log("// State: User is logging in.");
+    if (window.location.pathname === `/sign-in/`) {
+      // Redirect authenticated user to a page.
+      // TODO: Make this an option in WP.
+      window.location.href = magic_wp.redirect_uri_0;
     }
-  } else {
+
+    // State: User is authenticated.
+    console.log("// State: User is authenticated.");
+    document.querySelector("#magic-sign-in").innerHTML = authorizedTemplate;
+  } catch {
+    // State: User is NOT logging in.
+    console.log("// State: User is NOT logging in.");
     const isLoggedIn = await magic.user.isLoggedIn();
-    html = unauthorizedTemplate;
     if (isLoggedIn) {
+      // State: Logged in.
+      console.log("// State: Logged in.");
       if (window.location.pathname === `/sign-in/`) {
-        // window.location.href = magic_wp.redirect_uri_0;
+        // Redirect authenticated user to a page.
+        // TODO: Make this an option in WP.
+        window.location.href = magic_wp.redirect_uri_0;
+      }
+    } else {
+      // State: Not logged in.
+      console.log("// State: Not logged in.", magic_wp.redirect_uri_0);
+      if (window.location.pathname === magic_wp.redirect_uri_0) {
+        // Redirect authenticated user to a page.
+        // TODO: Make this an option in WP.
+        window.location.href = `/sign-in/`;
       }
     }
   }
-
-  if (document.getElementById("magic-sign-in")) {
-    document.querySelector("#magic-sign-in").innerHTML = html;
-  }
 };
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (jQuery("#magic-sign-in").length > 0) {
+    MagicSignIn();
+  }
+});
+
+if (jQuery("#magic-sign-in").length > 0) {
+  MagicSignIn();
+}
 
 /* Login Handler */
 const handleLogin = async (e) => {
@@ -46,9 +72,3 @@ const handleLogout = async () => {
   await magic.user.logout();
   window.location.href = window.location.origin;
 };
-
-document.addEventListener("DOMContentLoaded", function (event) {
-  if (jQuery("#magic-sign-in").length > 0) {
-    MagicSignIn();
-  }
-});

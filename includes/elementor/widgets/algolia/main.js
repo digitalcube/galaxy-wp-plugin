@@ -314,20 +314,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
           .then((hit) => {
             const { nickname, user_email, description } = hit.object;
 
-            // User display name.
-            document
-              .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", nickname);
+            if (jQuery("#magic-user-profile").length > 0) {
+              // User display name.
+              document
+                .querySelector("#magic-user-profile")
+                .insertAdjacentHTML("afterbegin", nickname);
 
-            // User email.
-            document
-              .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", `<p>${user_email}</p>`);
+              // User email.
+              document
+                .querySelector("#magic-user-profile")
+                .insertAdjacentHTML("afterbegin", `<p>${user_email}</p>`);
 
-            // User profile description.
-            document
-              .querySelector("#magic-user-profile")
-              .insertAdjacentHTML("afterbegin", `<h2>${description}</h2>`);
+              // User profile description.
+              document
+                .querySelector("#magic-user-profile")
+                .insertAdjacentHTML("afterbegin", `<h2>${description}</h2>`);
+            }
           });
       }
     };
