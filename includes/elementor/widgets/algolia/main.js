@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             const { nickname, user_email, description } = hit.object;
 
             if (jQuery("#magic-user-profile").length > 0) {
-              console.log('foo')
+              
               // User display name.
               document
                 .querySelector("#magic-user-profile")
