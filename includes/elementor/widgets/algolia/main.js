@@ -339,6 +339,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   if (jQuery("#magic-private").length > 0) {
     const MagicPrivate = async () => {
+      document.getElementById("magic-private").innerHTML =
+          "Sign in to view member content.";
       const isLoggedIn = await magic.user.isLoggedIn();
       if (isLoggedIn) {
         const index = searchClient.initIndex(`${indexName}`);
@@ -347,13 +349,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
         index
           .findObject((hit) => hit.user_email == email)
           .then((hit) => {
-            console.log(hit);
             // TODO: Search index based on user role access.
             search.start();
           });
-      } else {
-        document.getElementById("magic-private").innerHTML =
-          "Sign in to view member content.";
       }
     };
 
