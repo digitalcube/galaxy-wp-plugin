@@ -315,7 +315,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             const { nickname, user_email, description } = hit.object;
 
             if (jQuery("#magic-user-profile").length > 0) {
-              
               // User display name.
               document
                 .querySelector("#magic-user-profile")
@@ -342,7 +341,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const MagicPrivate = async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
       if (isLoggedIn) {
-        search.start();
+        const index = searchClient.initIndex(`${indexName}`);
+        const userMetadata = await magic.user.getMetadata();
+        const email = userMetadata.email;
+        index
+          .findObject((hit) => hit.user_email == email)
+          .then((hit) => {
+            console.log(hit);
+            // TODO: Search index based on user role access.
+            search.start();
+          });
       } else {
         document.getElementById("magic-private").innerHTML =
           "Sign in to view member content.";

@@ -15,6 +15,8 @@ const MagicSignIn = async () => {
     if (isLoggedIn) {
       document.getElementById("magic-sign-in").innerHTML = authorizedTemplate;
     }
+
+    document.getElementById("magic-sign-in").innerHTML = unauthorizedTemplate;
   }
 };
 
