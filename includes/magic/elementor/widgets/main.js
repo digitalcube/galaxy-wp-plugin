@@ -8,7 +8,7 @@ const MagicSignIn = async () => {
   html = "";
 
   if (await magic.user.isLoggedIn()) {
-    console.log("User is logged in.");
+    // console.log("User is logged in.");
     document.getElementById("magic-sign-in").innerHTML = authorizedTemplate;
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
@@ -40,5 +40,26 @@ const handleLogout = async () => {
 document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#magic-sign-in").length > 0) {
     MagicSignIn();
+  }
+});
+
+const MagicSignInLink = async () => {
+  html = "";
+
+  if (await magic.user.isLoggedIn()) {
+    document.getElementById("magic-sign-in-link").innerHTML = 'Account';
+    document.getElementById("magic-sign-in-link").href = magic_wp.redirect_uri_0;
+  } else {
+    const isLoggedIn = await magic.user.isLoggedIn();
+    if (isLoggedIn) {
+      document.getElementById("magic-sign-in-link").innerHTML = 'Account';
+      document.getElementById("magic-sign-in-link").href = magic_wp.redirect_uri_0;
+    }
+  }
+};
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (jQuery("#magic-sign-in-link").length > 0) {
+    MagicSignInLink();
   }
 });
