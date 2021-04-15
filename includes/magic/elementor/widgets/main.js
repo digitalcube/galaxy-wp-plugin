@@ -44,16 +44,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 const MagicSignInLink = async () => {
-  html = "";
+  label = "Account";
 
   if (await magic.user.isLoggedIn()) {
-    document.getElementById("magic-sign-in-link").innerHTML = 'Account';
-    document.getElementById("magic-sign-in-link").href = magic_wp.redirect_uri_0;
+    document.getElementById("magic-sign-in-link").innerHTML = label;
+    document.getElementById("magic-sign-in-link").href =
+      magic_wp.redirect_uri_0;
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
     if (isLoggedIn) {
-      document.getElementById("magic-sign-in-link").innerHTML = 'Account';
-      document.getElementById("magic-sign-in-link").href = magic_wp.redirect_uri_0;
+      document.getElementById("magic-sign-in-link").innerHTML = label;
+      document.getElementById("magic-sign-in-link").href =
+        magic_wp.redirect_uri_0;
     }
   }
 };
@@ -63,3 +65,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
     MagicSignInLink();
   }
 });
+
+const MagicSignInRedirect = async () => {
+  // TODO: Add to WP plugin settings
+  if (window.location.pathname === `/sign-in/`) {
+    if (await magic.user.isLoggedIn()) {
+      window.location.href = magic_wp.redirect_uri_0;
+    } else {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      if (isLoggedIn) {
+        window.location.href = magic_wp.redirect_uri_0;
+      }
+    }
+  }
+};
+
+MagicSignInRedirect();
