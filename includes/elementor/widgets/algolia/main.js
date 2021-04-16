@@ -339,10 +339,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   if (jQuery("#magic-private").length > 0) {
     const MagicPrivate = async () => {
-      document.getElementById("magic-private").innerHTML =
-          "Sign in to view member content.";
       const isLoggedIn = await magic.user.isLoggedIn();
-      if (isLoggedIn) {
+      if (isLoggedIn && jQuery("#algolia-config").length > 0) {
         const index = searchClient.initIndex(`${indexName}`);
         const userMetadata = await magic.user.getMetadata();
         const email = userMetadata.email;
@@ -352,6 +350,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
             // TODO: Search index based on user role access.
             search.start();
           });
+      } else {
+        if (!isLoggedIn) {
+          var div = document.querySelectorAll("#magic-private");
+          for (var i = 0; i < div.length; i++) {
+            div[i].innerHTML = "Sign in to view member content.";
+          }
+        }
       }
     };
 
