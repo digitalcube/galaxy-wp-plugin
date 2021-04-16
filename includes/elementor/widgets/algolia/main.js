@@ -357,6 +357,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             div[i].innerHTML = "Sign in to view member content.";
           }
         }
+
+        search.start();
       }
     };
 
