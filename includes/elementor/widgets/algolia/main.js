@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const categories = categoriesWithPanel({
       container: "#facet-categories",
       separator: " > ",
-      sortBy: ["count"],
+      sortBy: ["isRefined:desc", "count:desc", "name:asc"],
       attributes: [
         "taxonomies_hierarchical.category.lvl0",
         "taxonomies_hierarchical.category.lvl1",
