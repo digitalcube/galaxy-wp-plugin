@@ -328,7 +328,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
               // User profile description.
               document
                 .querySelector("#magic-user-profile")
-                .insertAdjacentHTML("afterbegin", `<div class="user-description">${description}</div>`);
+                .insertAdjacentHTML(
+                  "afterbegin",
+                  `<div class="user-description">${description}</div>`
+                );
             }
           });
       }

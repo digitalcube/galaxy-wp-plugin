@@ -23,12 +23,32 @@ const MagicSignIn = async () => {
 /* Login Handler */
 const handleLogin = async (e) => {
   e.preventDefault();
-  const email = new FormData(e.target).get("email");
   const redirectURI = `${window.location.origin + magic_wp.redirect_uri_0}`;
-  if (email) {
-    await magic.auth.loginWithMagicLink({ email, redirectURI });
-    render();
-  }
+  const indexName = settings.indexName;
+  const email = new FormData(e.target).get("email");
+  const searchClient = algoliasearch(
+    algolia.application_id,
+    algolia.search_api_key
+  );
+
+  const index = searchClient.initIndex(`${indexName}`);
+
+  const checkUserAccount = index
+    .search(`${email}`, {
+      hitsPerPage: 1,
+    })
+    .then(({ hits }) => {
+      console.log(hits);
+
+      if (hits.length <= 0) {
+        alert(
+          `User account for ${email} was found. Contact support for more help.`
+        );
+      } else {
+        magic.auth.loginWithMagicLink({ email, redirectURI });
+        render();
+      }
+    });
 };
 
 /* Logout Handler */
