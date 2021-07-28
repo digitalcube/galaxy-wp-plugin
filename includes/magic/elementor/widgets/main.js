@@ -42,7 +42,7 @@ const handleLogin = async (e) => {
 
       if (hits.length <= 0) {
         alert(
-          `User account for ${email} was found. Contact support for more help.`
+          `User account for ${email} was not found. Contact support for more help.`
         );
       } else {
         magic.auth.loginWithMagicLink({ email, redirectURI });
