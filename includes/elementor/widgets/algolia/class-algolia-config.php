@@ -261,6 +261,7 @@ class AlgoliaConfig extends Widget_Base
 			'localize' => $this->get_settings_for_display('localize'),
 			'localeName' => function_exists('pll_current_language') ? pll_current_language('name') : null,
 			'restPath' => $rest_path,
+			'siteID' => '0e356941-b03b-4897-a1ed-8afc680eca3e',
 		);
 
 		wp_localize_script('algolia-wp-plugin', 'settings', $config);

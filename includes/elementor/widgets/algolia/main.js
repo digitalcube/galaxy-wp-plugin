@@ -283,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   if (jQuery("#algolia-object").length > 0) {
     const MagicAlgoliaObject = async () => {
       const restPath = settings.restPath;
+      const siteID = settings.siteID;
       const isLoggedIn = await magic.user.isLoggedIn();
       const index = searchClient.initIndex(`${indexName}`);
       const algoliaObject = document.querySelectorAll("#algolia-object");
@@ -300,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           })
           .then(({ hits }) => {
             algoliaObject.forEach((item) => {
-              const url = `https://dev.stablevalue.local:8890/wp-content/uploads/${restPath}.json`;
+              const url = `https://${siteID}.static.getshifter.net/wp-content/uploads/${restPath}.json`;
 
               fetch(url)
                 .then((response) => response.json())
