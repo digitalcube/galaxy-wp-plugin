@@ -246,13 +246,6 @@ class AlgoliaConfig extends Widget_Base
 			return;
 		};
 
-		global $post;
-		$post_id =  $post->ID;
-		$post_type = get_post_type($post_id);
-		$post_type_obj = get_post_type_object($post_type);
-		$post_type_name = (string) strtolower($post_type_obj->labels->name);
-		$rest_path = 'wp-json/wp/v2/' .  $post_type_name . '/' . $post_id;
-
 		$config = array(
 			'postId' => get_the_ID(),
 			'facetFilters' => $this->get_settings_for_display('facet_filters'),
@@ -260,8 +253,6 @@ class AlgoliaConfig extends Widget_Base
 			'hitsPerPage' => $this->get_settings_for_display('hits_per_page'),
 			'localize' => $this->get_settings_for_display('localize'),
 			'localeName' => function_exists('pll_current_language') ? pll_current_language('name') : null,
-			'restPath' => $rest_path,
-			'siteID' => '0e356941-b03b-4897-a1ed-8afc680eca3e',
 		);
 
 		wp_localize_script('algolia-wp-plugin', 'settings', $config);

@@ -264,26 +264,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     search.addWidget(breadcrumbs);
   }
 
-  const getJSON = function (url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "json";
-    xhr.onload = function () {
-      var status = xhr.status;
-      if (status === 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status, xhr.response);
-      }
-    };
-    xhr.send();
-  };
-
   // Algolia Find Object with Magic Auth
   if (jQuery("#algolia-object").length > 0) {
     const MagicAlgoliaObject = async () => {
-      const restPath = settings.restPath;
-      const siteID = settings.siteID;
       const isLoggedIn = await magic.user.isLoggedIn();
       const index = searchClient.initIndex(`${indexName}`);
       const algoliaObject = document.querySelectorAll("#algolia-object");
@@ -292,7 +275,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (isLoggedIn) {
         const userMetadata = await magic.user.getMetadata();
         const email = userMetadata.email;
-        let content = "";
 
         index
           .search(`${email}`, {
@@ -301,27 +283,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
           })
           .then(({ hits }) => {
             algoliaObject.forEach((item) => {
-              const url = `https://${siteID}.static.getshifter.net/wp-content/uploads/${restPath}.json`;
-
-              fetch(url)
-                .then((response) => response.json())
-                .then((json) => {
-                  item.innerHTML = json.content.rendered;
-                })
-                .catch((error) => {
-                  console.error("Error loading");
-                  item.innerHTML = `<h1>Error Loading</h1>`;
-                });
-
-              // index.getObject(`${postId}-0`).then((object) => {
-              //   // TODO: Remove DOMParser for performance, use insertAdjacentHTML.
-              //   // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
-              //   let parser = new DOMParser();
-              //   const content = parser.parseFromString(
-              //     object.content,
-              //     "text/html"
-              //   );
-              // });
+              index.getObject(`${postId}-0`).then((object) => {
+                // TODO: Remove DOMParser for performance, use insertAdjacentHTML.
+                // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+                let parser = new DOMParser();
+                const content = parser.parseFromString(
+                  object.content,
+                  "text/html"
+                );
+                item.innerHTML = content.body.innerHTML;
+              });
             });
           });
       }
