@@ -271,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       const index = searchClient.initIndex(`${indexName}`);
       const algoliaObject = document.querySelectorAll("#algolia-object");
       const postId = settings.postId;
+      const baseUrl = `/wp-content/uploads/wp-json/wp/v2/posts/`;
 
       if (isLoggedIn) {
         const userMetadata = await magic.user.getMetadata();
@@ -283,16 +284,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
           })
           .then(({ hits }) => {
             algoliaObject.forEach((item) => {
-              index.getObject(`${postId}-0`).then((object) => {
-                // TODO: Remove DOMParser for performance, use insertAdjacentHTML.
-                // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
-                let parser = new DOMParser();
-                const content = parser.parseFromString(
-                  object.content,
-                  "text/html"
-                );
-                item.innerHTML = content.body.innerHTML;
-              });
+              fetch(`${baseUrl}${postId}.json`)
+                .then((response) => response.json())
+                .then((data) => {
+                  item.innerHTML = data.content.rendered;
+                });
             });
           });
       }
